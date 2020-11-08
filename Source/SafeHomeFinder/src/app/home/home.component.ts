@@ -10,7 +10,12 @@ import {ApiService} from '../api.service';
 
 
 export class HomeComponent implements OnInit {
+
+  //list for contain school
   schools_list = [];
+
+  //To do: Fetch data from zillow and socrata ODN
+
   constructor(private _apiService: ApiService) {
   }
   ngOnInit(): void {
