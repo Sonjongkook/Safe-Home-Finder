@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "SafeHomeFinder"
+    }
+  },
+  "defaultProject": "SafeHomeFinder",
+  "cli": {
+    "analytics": "30ec2a64-b46f-4172-acc7-a63f657eb8a8"
+  }
 }
