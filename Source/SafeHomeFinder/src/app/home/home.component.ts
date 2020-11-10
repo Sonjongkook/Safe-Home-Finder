@@ -9,7 +9,6 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./home.component.css']
 })
 
-
 export class HomeComponent implements OnInit {
 
   /* list for great schools
@@ -46,6 +45,7 @@ export class HomeComponent implements OnInit {
       }); */
 
     /* getting crime data from fbi crime api */
+
     this._apiService.getCrimes()
       .subscribe((responses: any) => {
         this.crime_list = Object.keys(responses.data).map(function (k) {

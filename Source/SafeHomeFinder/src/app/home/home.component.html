@@ -12,10 +12,12 @@
 </div>-->
 
 <h1>FBI Crime Data results</h1>
+
 <h4>Aggravated Assaults in MO:</h4>
 <div *ngFor = "let crime of crime_list">
   <h6>{{crime.year}} {{crime.value}} {{crime.type}}</h6>
 </div>
+
 
 <!--implementing google map
 <agm-map [longitude]="schools_list[1].lon" [latitude]="schools_list[1].lat">

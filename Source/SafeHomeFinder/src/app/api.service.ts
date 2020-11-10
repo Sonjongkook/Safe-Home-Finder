@@ -25,4 +25,7 @@ export class ApiService {
   getCrimes() {
     return this.http.get(this.Crime_Data_Url);
   }
+
+
 }
+
