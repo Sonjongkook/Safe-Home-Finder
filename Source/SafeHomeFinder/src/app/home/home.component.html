@@ -1,14 +1,19 @@
-<p>home works!</p>
+<p>API Calls</p>
 
 <!--getting schools-->
+<h1>Great Schools results</h1>
 <div *ngFor="let school of schools_list">
   <h4>{{school.name}}</h4>
 </div>
 
-<h1>result of zillow</h1>
+<h1>Zillow results</h1>
 <div *ngFor="let house of home_list">
-  <h4>{{house.home.zpid}}</h4>
+  <h4>{{house.home.streetAddress}} {{house.home.zipcode}}</h4>
 </div>
+
+<h1>FBI Crime Data results</h1>
+<div *ngFor="let crime of crime_list">
+  <h4>Aggravated Assaults in MO: {{crime.data_year}} {{crime.value}} </h4>
 
 <!--implementing google map-->
 <agm-map [longitude]="schools_list[1].lon" [latitude]="schools_list[1].lat">
