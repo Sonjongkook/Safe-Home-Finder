@@ -1,0 +1,4 @@
+/*necessary to show google map to the page*/
+agm-map {
+  height: 300px;
+}
