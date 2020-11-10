@@ -17,4 +17,7 @@ export class ApiService {
   getSchools() {
     return this.http.get(this.Great_Schools_Url)
   }
+
+
 }
+

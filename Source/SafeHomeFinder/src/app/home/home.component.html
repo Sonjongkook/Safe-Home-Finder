@@ -5,6 +5,11 @@
   <h4>{{school.name}}</h4>
 </div>
 
+<h1>result of zillow</h1>
+<div *ngFor="let house of home_list">
+  <h4>{{house.home.zpid}}</h4>
+</div>
+
 <!--implementing google map-->
 <agm-map [longitude]="schools_list[1].lon" [latitude]="schools_list[1].lat">
   <agm-marker *ngFor="let school of schools_list" [latitude]="school.lat" [longitude]="school.lon"></agm-marker>
