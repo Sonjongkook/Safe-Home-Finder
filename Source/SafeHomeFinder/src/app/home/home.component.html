@@ -14,7 +14,6 @@
 <h1>FBI Crime Data results</h1>
 <div *ngFor="let crime of crime_list">
   <h4>Aggravated Assaults in MO: {{crime.data_year}} {{crime.value}} </h4>
-</div>
 
 <!--implementing google map-->
 <agm-map [longitude]="schools_list[1].lon" [latitude]="schools_list[1].lat">

@@ -8,7 +8,6 @@ import {ApiService} from '../api.service';
   styleUrls: ['./home.component.css']
 })
 
-
 export class HomeComponent implements OnInit {
 
   /* list for great schools */
@@ -24,6 +23,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     /* getting schools data from great schools api */
     this._apiService.getSchools().subscribe(data => this.schools_list = data.schools.school);
     console.log('This is the Great Schools API results: ' + JSON.stringify(this.schools_list));
@@ -48,5 +48,6 @@ export class HomeComponent implements OnInit {
     /* getting crime data from fbi crime api */
     this._apiService.getCrimes().subscribe(data => this.crime_list = data.keys);
     console.log('This is the FBI crime API results: ' + JSON.stringify(this.crime_list));
+
   }
 }
