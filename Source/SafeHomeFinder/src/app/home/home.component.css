@@ -1,3 +1,51 @@
+/* MAIN container; 82% centered. */
+.mainTable {
+  height: 100%;
+  width:82%;
+  margin:auto;
+  alignment: center;
+}
+
+#Title {
+  font-size: 35px;
+  font-family: "Arial Narrow";
+  color: cadetblue;
+}
+
+.resultsHeader {
+  font-size: 20px;
+  font-weight: bold;
+  color: dimgray;
+  font-family: "Arial Narrow";
+}
+
+.searchTable{
+  padding: 25px 25px 25px 25px;
+  border-style: none;
+  background-color: cadetblue;
+  font-size: 20px;
+  font-family: "Arial Narrow";
+}
+
+#inputSize {
+  min-width: 340px;
+}
+
+.searchResults {
+  display: flex;
+}
+
+.searchResults .column1 {
+  flex: 50%;
+}
+
+.searchResults .column2 {
+  flex: 50%;
+}
+
+.searchResults .crimeReport {
+  flex: 100%;
+}
 /*necessary to show google map to the page*/
 agm-map {
   height: 300px;
