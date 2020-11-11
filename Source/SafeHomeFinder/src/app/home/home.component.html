@@ -7,9 +7,50 @@
     <label for="address"> Address:</label><input #addressInput required id="address" type="text" name="address" id="inputSize"><br>
     <label for="city"> City:</label><input #cityInput required id="city" type="text" name="city">
     <label for="state"> State:</label><input #stateInput required id="state" type="text" name="state"><br>
-    <button routerLink="/result" (click)="getSearchResults()" class="btn btn primary col-lg-2 col-lg-offset-5 " type="button">Search</button>
+    <button (click)="getSearchResults()" class="btn btn primary col-lg-2 col-lg-offset-5 " type="button">Search</button>
   </fieldset>
 
+  <!-- Search Results -->
+  <div class="searchResults">
+    <div class="column1">
 
+      <!-- Zillow API results -->
+      <span class="resultsHeader">Homes:</span>
+      <div *ngFor="let house of home_list">
+        <p>Address:</p>
+        <p>{{house.home.streetAddress}}}</p>
+        <p>{{house.home.city}} {{house.home.state}} {{house.home.zipcode}}</p>
+        <p>Price: ${{house.home.price}}</p>
+        <p>Number of bedrooms: {{house.home.bedrooms}}</p>
+        <p>Number of baths: {{house.home.bathrooms}}</p>
+        <p>Size: {{house.home.livingArea}}</p>
+      </div>
+      <p>Test Home 1</p>
+      <p>Test Home 2</p>
+    </div>
 
+    <div class="column2">
+      <!-- Great Schools API results -->
+      <span class="resultsHeader">Nearby Schools:</span>
+      <div *ngFor="let school of schools_list">
+        <p>{{school.name}}</p>
+      </div>
+      <p>Test School 1</p>
+      <p>Test School 2</p>
+    </div>
+  </div>
 
+  <div class="crimeReport">
+    <!-- FBI Crime Data API results -->
+    <span class="resultsHeader">Crime Score:</span>
+    <p>Aggravated Assaults:</p>
+    <div *ngFor = "let crime of crime_list">
+      <p>{{crime.year}} {{crime.value}} {{crime.type}}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Google Maps: Having issues with this
+<agm-map [longitude]="schools_list[1].lon" [latitude]="schools_list[1].lat">
+  <agm-marker *ngFor="let school of schools_list" [latitude]="school.lat" [longitude]="school.lon"></agm-marker>
+</agm-map> -->
