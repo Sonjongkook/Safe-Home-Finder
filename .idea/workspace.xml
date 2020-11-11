@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a8c77685-0239-40b3-87f9-eae6cbeca25e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/home/home.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/home/home.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/home/home.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/home/home.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +46,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="ts.external.directory.path" value="C:\Users\sjk37\Documents\Safe-Home-Finder\Source\SafeHomeFinder\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -39,16 +59,49 @@
       <updated>1603607270817</updated>
       <workItem from="1603607272158" duration="59000" />
       <workItem from="1604646792743" duration="2332000" />
+      <workItem from="1605052349236" duration="20000" />
+      <workItem from="1605052894383" duration="3753000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
     <state x="310" y="367" key="FileChooserDialogImpl" timestamp="1604822493921">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="310" y="367" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1604822493921" />
+    <state width="1500" height="207" key="GridCell.Tab.0.bottom" timestamp="1605053229049">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1500" height="207" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1605053229049" />
+    <state width="1500" height="207" key="GridCell.Tab.0.center" timestamp="1605053229049">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1500" height="207" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1605053229049" />
+    <state width="1500" height="207" key="GridCell.Tab.0.left" timestamp="1605053229049">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1500" height="207" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1605053229049" />
+    <state width="1500" height="207" key="GridCell.Tab.0.right" timestamp="1605053229049">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1500" height="207" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1605053229049" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1605054721403">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1605054721403" />
   </component>
 </project>

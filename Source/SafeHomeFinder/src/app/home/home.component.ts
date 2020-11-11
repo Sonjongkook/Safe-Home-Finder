@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
     /* getting schools data from great schools api
     this._apiService.getSchools().subscribe(data => this.schools_list = data.schools.school); */
 
-    /* getting house info from zillow rapidapi's
+    /* getting house info from zillow rapidapi's */
     fetch('https://zillow-free.p.rapidapi.com/properties/zipcode/64133?min_price=0&page=1&max_price=0', {
       method: 'GET',
       headers: {
@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
         }).catch(err => {
           console.error(err);
         });
-      }); */
+      });
 
     /* getting crime data from fbi crime api */
 
