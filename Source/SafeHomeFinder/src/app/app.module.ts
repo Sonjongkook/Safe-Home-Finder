@@ -14,6 +14,7 @@ import { AgmCoreModule } from '@agm/core';
   imports: [
     BrowserModule,
     HttpClientModule,
+    //change the api key for your local area
     AgmCoreModule.forRoot({apiKey: 'AIzaSyCKAgIKofveuwkVAzggpI55qLtGqBidlDk'})
 ],
   providers: [],
