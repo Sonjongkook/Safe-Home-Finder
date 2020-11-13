@@ -1,5 +1,4 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ApiService} from '../api.service';
 
 @Component({
   selector: 'app-home',

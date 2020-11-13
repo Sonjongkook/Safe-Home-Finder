@@ -4,22 +4,21 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-import { AgmCoreModule } from '@agm/core';
 import { ResultComponent } from './result/result.component';
 import {AppRoutingModule} from './app-routing.module';
+import { GoogleMapComponent } from './google-map/google-map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ResultComponent,
+    GoogleMapComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    //change the api key for your local area
-    AgmCoreModule.forRoot({apiKey: 'AIzaSyCKAgIKofveuwkVAzggpI55qLtGqBidlDk'})
 ],
   providers: [],
   bootstrap: [AppComponent]

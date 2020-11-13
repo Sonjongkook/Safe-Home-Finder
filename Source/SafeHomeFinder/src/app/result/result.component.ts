@@ -25,7 +25,6 @@ export class ResultComponent implements OnInit {
     /* getting schools data from great schools api */
     this._apiService.getSchools().subscribe(data => this.schools_list = data.schools.school);
 
-    this._apiService.getSchoolReview().subscribe(data => console.log(data));
 
     /* getting house info from zillow rapidapi's */
     fetch('https://zillow-free.p.rapidapi.com/properties/zipcode/64133?min_price=0&page=1&max_price=0', {

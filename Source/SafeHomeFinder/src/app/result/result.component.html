@@ -4,7 +4,6 @@
 <!-- Search Results -->
 <div class="searchResults">
   <div class="column1">
-
     <!-- Zillow API results -->
     <span class="resultsHeader">Homes:</span>
     <div *ngFor="let house of home_list">
@@ -42,8 +41,3 @@
 
 
 
-<agm-map  [longitude]="schools_list[1].lon" [latitude]="schools_list[1].lat">
-  <agm-marker  iconUrl="http://maps.google.com/mapfiles/ms/icons/red-dot.png" *ngFor="let school of schools_list" [latitude]="school.lat" [longitude]="school.lon"></agm-marker>
-  <agm-marker iconUrl="http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-              *ngFor="let house of home_list" [latitude]="house.home.latitude" [longitude]="house.home.longitude"></agm-marker>
-</agm-map>
