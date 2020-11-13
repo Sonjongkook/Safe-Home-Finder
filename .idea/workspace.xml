@@ -22,8 +22,17 @@
     <list default="true" id="a8c77685-0239-40b3-87f9-eae6cbeca25e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/api.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/data.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/data.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/google-map/google-map.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/google-map/google-map.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/google-map/google-map.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/google-map/google-map.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/google-map/google-map.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/google-map/google-map.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/home/home.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/home/home.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/home/home.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/home/home.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/result/result.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/result/result.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/result/result.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/result/result.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/result/result.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/result/result.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,28 +86,29 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="310" y="367" key="FileChooserDialogImpl" timestamp="1604822493921">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="310" y="367" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1604822493921" />
-    <state width="1500" height="207" key="GridCell.Tab.0.bottom" timestamp="1605053229049">
+    <state width="1515" height="420" key="GridCell.Tab.0.bottom" timestamp="1605289004709">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1500" height="207" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1605053229049" />
-    <state width="1500" height="207" key="GridCell.Tab.0.center" timestamp="1605053229049">
+    <state width="1515" height="420" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1605289004709" />
+    <state width="1515" height="420" key="GridCell.Tab.0.center" timestamp="1605289004709">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1500" height="207" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1605053229049" />
-    <state width="1500" height="207" key="GridCell.Tab.0.left" timestamp="1605053229049">
+    <state width="1515" height="420" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1605289004709" />
+    <state width="1515" height="420" key="GridCell.Tab.0.left" timestamp="1605289004708">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1500" height="207" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1605053229049" />
-    <state width="1500" height="207" key="GridCell.Tab.0.right" timestamp="1605053229049">
+    <state width="1515" height="420" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1605289004708" />
+    <state width="1515" height="420" key="GridCell.Tab.0.right" timestamp="1605289004709">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1500" height="207" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1605053229049" />
+    <state width="1515" height="420" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1605289004709" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1605054721403">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

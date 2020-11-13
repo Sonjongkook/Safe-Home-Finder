@@ -6,7 +6,8 @@
   <fieldset class="searchTable">
     <label for="address"> Address:</label><input #addressInput required id="address" type="text" name="address" id="inputSize"><br>
     <label for="city"> City:</label><input #cityInput required id="city" type="text" name="city">
-    <label for="state"> State:</label><input #stateInput required id="state" type="text" name="state"><br>
+    <label for="state"> State:</label><input #stateInput required id="state" type="text" name="state">
+    <lable for="zipcode"> Zipcode:</lable><input #zipcodeInput required id="zipcode" type="number" name="zipcode"><br>
     <button routerLink="/map" (click)="getSearchResults()" class="btn btn primary col-lg-2 col-lg-offset-5 " type="button">Search</button>
   </fieldset>
 

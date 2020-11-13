@@ -46,7 +46,3 @@
 .searchResults .crimeReport {
   flex: 100%;
 }
-/*necessary to show google map to the page*/
-agm-map {
-  height: 500px;
-}

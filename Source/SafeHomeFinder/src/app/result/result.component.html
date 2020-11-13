@@ -1,10 +1,11 @@
-<p>result works!</p>
-
+<div class="mainTable">
 
 <!-- Search Results -->
 <div class="searchResults">
+
   <div class="column1">
-    <!-- Zillow API results -->
+    <!-- Zillow Rapid API result:
+    Should only display 1 house, need to fix -->
     <span class="resultsHeader">Homes:</span>
     <div *ngFor="let house of home_list">
       <p>Address:</p>
@@ -31,13 +32,13 @@
 </div>
 
 <div class="crimeReport">
-  <!-- FBI Crime Data API results -->
+  <!-- Socrata ODN API results -->
   <span class="resultsHeader">Crime Score:</span>
-  <p>Aggravated Assaults:</p>
+  <p>Crimes within the area:</p>
   <div *ngFor = "let crime of crime_list">
-    <p>{{crime.year}} {{crime.value}} {{crime.type}}</p>
+    <p>{{crime.description}} commited on {{crime.reported_date}} at {{crime.address}}</p>
   </div>
 </div>
 
-
+</div>
 

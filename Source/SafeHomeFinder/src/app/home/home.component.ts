@@ -11,12 +11,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('addressInput') addr: ElementRef;
   @ViewChild('cityInput') city: ElementRef;
   @ViewChild('stateInput') state: ElementRef;
-
-  /* variables for user input */
-  addressVal: any;
-  cityVal: any;
-  stateVal: any;
-
+  @ViewChild('zipcodeInput') zipcode: Element;
 
   constructor(private dataService: DataService) {
   }
@@ -24,11 +19,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  /* When user clicks submit button, will call this method. Input grabbed. */
+  /* Takes user input from Search page and allows access to other components */
   getSearchResults(){
     this.dataService.sharedAddress = this.addr.nativeElement.value;
     this.dataService.sharedCity = this.city.nativeElement.value;
     this.dataService.sharedState = this.state.nativeElement.value;
+    this.dataService.sharedZipcode = this.state.nativeElement.value;
   }
 
 
