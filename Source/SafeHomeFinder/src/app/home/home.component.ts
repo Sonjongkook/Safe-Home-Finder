@@ -1,4 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {DataService} from '../data.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit {
   stateVal: any;
 
 
-  constructor() {
+  constructor(private dataService: DataService) {
   }
 
   ngOnInit(): void {
@@ -25,14 +26,9 @@ export class HomeComponent implements OnInit {
 
   /* When user clicks submit button, will call this method. Input grabbed. */
   getSearchResults(){
-    this.addressVal = this.addr.nativeElement.value;
-    this.cityVal = this.city.nativeElement.value;
-    this.stateVal = this.state.nativeElement.value;
-
-    console.log('This button works');
-    console.log(this.addressVal);
-    console.log(this.cityVal);
-    console.log(this.stateVal);
+    this.dataService.sharedAddress = this.addr.nativeElement.value;
+    this.dataService.sharedCity = this.city.nativeElement.value;
+    this.dataService.sharedState = this.state.nativeElement.value;
   }
 
 

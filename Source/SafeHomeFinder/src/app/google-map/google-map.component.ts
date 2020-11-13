@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../api.service';
-
+import {DataService} from '../data.service';
 
 
 @Component({
@@ -13,10 +13,15 @@ export class GoogleMapComponent implements OnInit {
   map: any;
   home_list = [];
 
-  constructor(private _apiService: ApiService) {
+  constructor(private _apiService: ApiService, private dataService: DataService) {
   }
 
   ngOnInit(): void {
+    //We can modify url based on this shared data
+    console.log(this.dataService.sharedAddress);
+    console.log(this.dataService.sharedCity);
+    console.log(this.dataService.sharedState);
+
     /* getting house info from zillow rapidapi's */
     fetch('https://zillow-free.p.rapidapi.com/properties/zipcode/64133?min_price=0&page=1&max_price=0', {
       method: 'GET',
