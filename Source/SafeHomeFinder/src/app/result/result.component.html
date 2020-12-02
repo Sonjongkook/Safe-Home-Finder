@@ -1,12 +1,7 @@
 <div class="mainTable">
 
-<!-- Search Results -->
-<div class="searchResults">
-
-  <div class="column1">
-    <!-- Zillow Rapid API result:
-    Should only display 1 house, need to fix -->
-    <span class="resultsHeader">Homes:</span>
+  <div class="houseResult">
+    <span class="resultsHeader">Details on House:</span>
     <div *ngFor="let house of home_list">
       <p>Address:</p>
       <p>{{house.home.streetAddress}}}</p>
@@ -16,8 +11,25 @@
       <p>Number of baths: {{house.home.bathrooms}}</p>
       <p>Size: {{house.home.livingArea}}</p>
     </div>
-    <p>Test Home 1</p>
-    <p>Test Home 2</p>
+    <p>This is where the main house goes.</p>
+  </div>
+
+<!-- Search Results -->
+<div class="searchResults">
+  <div class="column1">
+    <!-- Zillow Rapid API result:
+    Should only display 1 house, need to fix -->
+    <span class="resultsHeader">Nearby Houses:</span>
+    <div *ngFor="let homes of nearby_houses">
+      <p>Address:</p>
+      <p>{{homes.home.streetAddress}}}</p>
+      <p>{{homes.home.city}} {{homes.home.state}} {{homes.home.zipcode}}</p>
+      <p>Price: ${{homes.home.price}}</p>
+      <p>Number of bedrooms: {{homes.home.bedrooms}}</p>
+      <p>Number of baths: {{homes.home.bathrooms}}</p>
+      <p>Size: {{homes.home.livingArea}}</p>
+    </div>
+    <p>This is where the nearby houses within 5 mile radius shows up.</p>
   </div>
 
   <div class="column2">
@@ -26,15 +38,14 @@
     <div *ngFor="let school of schools_list">
       <p>{{school.name}}</p>
     </div>
-    <p>Test School 1</p>
-    <p>Test School 2</p>
+    <p>This is where the nearby schools within 5 mile radius shows up.</p>
   </div>
 </div>
 
-<div class="crimeReport">
-  <!-- Socrata ODN API results -->
-  <canvas id="canvas"> {{chart}}</canvas>
-</div>
+  <div class="crimeReport">
+    <!-- Socrata ODN API results -->
+    <canvas id="canvas"> {{chart}}</canvas>
+  </div>
 
 </div>
 

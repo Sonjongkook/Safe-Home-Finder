@@ -13,13 +13,14 @@ export class ResultComponent implements OnInit {
   constructor(private _apiService: ApiService, private dataService: DataService) {
   }
 
-  private Zillow_API = ''; /////////////// This is where the ZILLOW API KEY GOES ////////////////
+  private Zillow_API = '';  ///////// This is where the ZILLOW API KEY GOES ////////////////
 
   /* list for great schools*/
-  schools_list = [];
+  schools_list: any;
 
   /* list for zillow houses */
   home_list = [];
+  nearby_houses = [];
 
   /* Variables for Socrata data*/
   crime_chart = [];
@@ -29,82 +30,93 @@ export class ResultComponent implements OnInit {
   chart: [];
   colors = [];
 
-
   ngOnInit(): void {
-    // Variables accessed from Data Service Component.
-    // Printing to console for Verification.
-    console.log('Result Component: ' + this.dataService.sharedAddress);
-    console.log('Result Component: ' + this.dataService.sharedCity);
-    console.log('Result Component: ' + this.dataService.sharedState);
-    console.log('Result Component: ' + this.dataService.sharedZipcode);
+    // Testing
+     //this.dataService.sharedState = 'MO';
+     //this.dataService.sharedLat = '39.092882';
+     //this.dataService.sharedLong = '-94.576823';
+     //this.dataService.sharedZipcode = '64133';
 
-    /* Great Schools API call */
-    this._apiService.getSchools().subscribe(data => this.schools_list = data.schools.school);
 
-    /* Zillow Rapid API call
-    * Parameters: Zillow_API
-    * --Plan to have this take in an address to pull the details information on house, schools, and any crimes.
-    * --Will need to use a different api fetch url for address search */
-    fetch('https://zillow-free.p.rapidapi.com/properties/zipcode/64133?min_price=0&page=1&max_price=0', {
-      method: 'GET',
-      headers: {
-        'x-rapidapi-key': this.Zillow_API,
-        'x-rapidapi-host': 'zillow-free.p.rapidapi.com'
-      }
-    })
-      .then(response => {
-        return response.json().then((data) => {
-          this.home_list = data.result;
-        }).catch(err => {
-          console.error(err);
+    if (this.dataService.sharedZipcode !== undefined) {
+      /* Zillow API NEARBY WITHIN 5 MILES call
+      * -- Will use the shared lat and shared long */
+      fetch('https://zillow-free.p.rapidapi.com/properties/nearby/' + this.dataService.sharedLat + '/' +
+        this.dataService.sharedLong + '?min_price=0&max_price=0&page=1&radius=5', {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-key': '',
+          'x-rapidapi-host': 'zillow-free.p.rapidapi.com'
+        }
+      })
+        .then(response => {
+          return response.json().then((data) => {
+            this.nearby_houses = data.result;
+          }).catch(err => {
+            console.error(err);
+          });
         });
-      });
+    }
 
-    /* Socrata API call and Creation of Chart
-    * Parameters: None
-    * -- Will use the shared zipcode */
-    this._apiService.getSocrataCrimes()
-      .subscribe((responses: any) => {
-        Object.keys(responses).map(k => {
-          if (responses[k].zip_code === '64111'){ // Add the shared Zipcode here
-            const i = responses[k].description;
-            if (i !== undefined){
-              this.crime_chart.push(i);
+    if (this.dataService.sharedState !== undefined){
+      /* Great Schools API call
+      *  -- Will use the shared state, shared lat, and shared long */
+        this._apiService.getSchools(this.dataService.sharedState, this.dataService.sharedLat, this.dataService.sharedLong)
+          .subscribe(data => this.schools_list = data.schools.school);
+     }
+     else{
+      console.log('Error: Shared state is ' + this.dataService.sharedState);
+     }
+
+    if (this.dataService.sharedZipcode !== undefined){
+      /* Socrata API call and Creation of Chart
+      * -- Will use the shared zipcode */
+      this._apiService.getSocrataCrimes()
+        .subscribe((responses: any) => {
+          Object.keys(responses).map(k => {
+            if (responses[k].zip_code === this.dataService.sharedZipcode){
+              const i = responses[k].description;
+              if (i !== undefined){
+                this.crime_chart.push(i);
+              }
             }
-         }
-        });
+          });
 
-        /* Sort the array and create another array for count of offenses */
-        this.crime_chart.sort();
-        this.createCount([...new Set(this.crime_chart)]);
-        this.randomizeColors();
+          /* Sort the array and create another array for count of offenses */
+          this.crime_chart.sort();
+          this.createCount([...new Set(this.crime_chart)]);
+          this.randomizeColors();
 
-        /* Create the chart */
-        this.chart = new Chart('canvas', {
-          type: 'bar',
-          data: {
-            labels: [...new Set(this.crime_chart)], // Pass in unique set as the label
-            datasets: [
-              {
-              label: 'Number of Reported Crimes Committed (2020)',
-              data: this.crime_count, // Insert the associated data
-              backgroundColor: this.colors,
-              borderColor: this.colors,
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true
-                }
-              }]
+          /* Create the chart */
+          this.chart = new Chart('canvas', {
+            type: 'bar',
+            data: {
+              labels: [...new Set(this.crime_chart)], // Pass in unique set as the label
+              datasets: [
+                {
+                  label: 'Number of Reported Crimes Committed (2020) ' + this.dataService.sharedZipcode,
+                  data: this.crime_count, // Insert the associated data
+                  backgroundColor: this.colors,
+                  borderColor: this.colors,
+                  borderWidth: 1
+                }]
+            },
+            options: {
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: true
+                  }
+                }]
+              }
             }
-          }
+          });
         });
-      });
 
+    }
+    else{
+      console.log('Error: Shared zipcode is ' + this.dataService.sharedZipcode);
+    }
 
 
   }
@@ -130,9 +142,9 @@ export class ResultComponent implements OnInit {
     const maxValue = 255;
     const minValue = 1;
     this.crime_count.forEach(item => {
-      let red = Math.floor(Math.random() * (maxValue + minValue));
-      let green = Math.floor(Math.random() * ((maxValue + minValue)));
-      let blue = Math.floor(Math.random() * ((maxValue + minValue)));
+      const red = Math.floor(Math.random() * (maxValue + minValue));
+      const green = Math.floor(Math.random() * ((maxValue + minValue)));
+      const blue = Math.floor(Math.random() * ((maxValue + minValue)));
       const items = [red, green, blue, visibility];
       this.colors.push(String('rgba(' + items.toString() + ')'));
     });

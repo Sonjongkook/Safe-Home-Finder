@@ -9,6 +9,8 @@ export class DataService {
   sharedCity: string;
   sharedState: string;
   sharedZipcode: string;
+  sharedLat: string;
+  sharedLong: string;
 
   constructor() { }
 }
