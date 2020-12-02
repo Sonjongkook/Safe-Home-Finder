@@ -14,8 +14,7 @@ export class GoogleMapComponent implements OnInit {
   home_list = [];
 
   /* Zillow API key and URL string */
-  private updated_Zillow_URL: string;
-  private Zillow_API = ''; /////////////// This is where the ZILLOW API KEY GOES ////////////////
+  private Realtor_API = ''; ///////// This is where the REALTOR API KEY GOES ////////////
 
   constructor(private _apiService: ApiService, private dataService: DataService) {
   }
@@ -24,29 +23,19 @@ export class GoogleMapComponent implements OnInit {
     // Variables accessed from Data Service Component.
     // Printing to console for Verification.
     console.log('Google Map Component: ' + this.dataService.sharedAddress);
-    console.log('Google Map Component: ' + this.dataService.sharedCity);
-    console.log('Google Map Component: ' + this.dataService.sharedState);
-    console.log('Google Map Component: ' + this.dataService.sharedZipcode);
 
-    // Updated Zillow URL based on Zipcode
-    // Parameters: dataService.sharedZipcode
-    // --Will need to find way to find the Zipcode if given just Address or CityState
-    this.updated_Zillow_URL = 'https://zillow-free.p.rapidapi.com/properties/zipcode/' + this.dataService.sharedZipcode +
-      '?min_price=0&page=1&max_price=0';
-
-    /* Zillow Rapid API call
-    * Parameters: updated_Zillow_URL and Zillow_API */
-    fetch(this.updated_Zillow_URL, {
+    /* Realtor Rapid API call - Displays 10 of the newest listings */
+    fetch('https://realtor.p.rapidapi.com/properties/v2/list-for-sale?city=Kansas%20City&limit=15&offset=0&state_code=MO&sort=newest&is_pending=false&is_new_plan=false', {
       method: 'GET',
       headers: {
-        'x-rapidapi-key': this.Zillow_API,
-        'x-rapidapi-host': 'zillow-free.p.rapidapi.com'
+        'x-rapidapi-key': this.Realtor_API,
+        'x-rapidapi-host': 'realtor.p.rapidapi.com'
       }
     })
       .then(response => {
         return response.json().then((data) => {
-          console.log(data);
-          this.home_list = data.result;
+          //console.log(data);
+          this.home_list = data.properties;
           return this.home_list;
         }).then((list) => {
           this.initMap(list);
@@ -58,7 +47,7 @@ export class GoogleMapComponent implements OnInit {
 
   /* Method that initializes Google Map */
   initMap(homelist) {
-    let coords = new google.maps.LatLng(homelist[0].home.latitude, homelist[0].home.longitude);
+    let coords = new google.maps.LatLng(homelist[0].address.lat, homelist[0].address.lon);
     let mapOptions: google.maps.MapOptions = {
       center: coords,
       zoom: 11,
@@ -71,17 +60,17 @@ export class GoogleMapComponent implements OnInit {
 
     // Iterate through the home_list and add markers.
     for (let house of homelist) {
-      console.log(house.home.latitude);
-      let coords = new google.maps.LatLng(house.home.latitude, house.home.longitude);
+      console.log(house.address.lat);
+      let coords = new google.maps.LatLng(house.address.lat, house.address.lon);
       let marker: google.maps.Marker = new google.maps.Marker({
         map: this.map,
         position: coords
       });
 
       // Displays the home's selling status, price, address, image, # bedrooms, and # bathrooms.
-      let contentString = `<div>${house.home.homeStatus}</div>` + `<div>Price: ${house.home.price}</div>` +
-        `<div>${house.home.streetAddress}</div>` + `<img height="100" width="100" src=${house.home.watchImageLink}>`
-      + `<div># of Bedrooms: ${house.home.bedrooms}</div>` + `<div># of Bathrooms: ${house.home.bathrooms}</div>`;
+      let contentString = `<div>${house.prop_status}</div>` + `<div>Price: ${house.price}</div>` +
+        `<div>${house.address.line}</div>` + `<img height="100" width="100" src=${house.thumbnail}>`
+      + `<div># of Bedrooms: ${house.beds}</div>` + `<div># of Bathrooms: ${house.baths}</div>`;
       let infowindow = new google.maps.InfoWindow({
         content: contentString
       });

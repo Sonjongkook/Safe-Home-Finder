@@ -11,6 +11,7 @@ export class DataService {
   sharedZipcode: string;
   sharedLat: string;
   sharedLong: string;
+  sharedPropertyID: string;
 
   constructor() { }
 }

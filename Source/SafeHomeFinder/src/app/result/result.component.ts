@@ -13,7 +13,7 @@ export class ResultComponent implements OnInit {
   constructor(private _apiService: ApiService, private dataService: DataService) {
   }
 
-  private Zillow_API = '';  ///////// This is where the ZILLOW API KEY GOES ////////////////
+  private Realtor_API = '';  /////// This is where the REALTOR API KEY GOES //////
 
   /* list for great schools*/
   schools_list: any;
@@ -35,28 +35,38 @@ export class ResultComponent implements OnInit {
      //this.dataService.sharedState = 'MO';
      //this.dataService.sharedLat = '39.092882';
      //this.dataService.sharedLong = '-94.576823';
-     //this.dataService.sharedZipcode = '64133';
+     //this.dataService.sharedZipcode = '64130';
+     //this.dataService.sharedPropertyID = '7744104915';
 
-
-    if (this.dataService.sharedZipcode !== undefined) {
-      /* Zillow API NEARBY WITHIN 5 MILES call
-      * -- Will use the shared lat and shared long */
-      fetch('https://zillow-free.p.rapidapi.com/properties/nearby/' + this.dataService.sharedLat + '/' +
-        this.dataService.sharedLong + '?min_price=0&max_price=0&page=1&radius=5', {
+    if (this.dataService.sharedPropertyID !== undefined) {
+      /* Realtor API NEARBY WITHIN 5 MILES call
+      * -- Will use the home's property ID number */
+      fetch('https://realtor.p.rapidapi.com/properties/v2/list-similar-homes?property_id=' +
+        this.dataService.sharedPropertyID, {
         method: 'GET',
         headers: {
-          'x-rapidapi-key': '',
-          'x-rapidapi-host': 'zillow-free.p.rapidapi.com'
+          'x-rapidapi-key': this.Realtor_API,
+          'x-rapidapi-host': 'realtor.p.rapidapi.com'
         }
       })
         .then(response => {
           return response.json().then((data) => {
-            this.nearby_houses = data.result;
+            if (data.data.home === null) {
+              console.log('Returned similar homes is null.');
+            } else if (data.data.home.related_homes.count === 0) {
+              console.log('Returned similar homes count is 0.');
+            } else {
+              this.nearby_houses = data.data.home.related_homes.results;
+            }
           }).catch(err => {
             console.error(err);
           });
         });
     }
+    else{
+      console.log('Error: Shared Property ID is ' + this.dataService.sharedPropertyID);
+    }
+
 
     if (this.dataService.sharedState !== undefined){
       /* Great Schools API call

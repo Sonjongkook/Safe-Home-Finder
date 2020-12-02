@@ -17,17 +17,12 @@
 <!-- Search Results -->
 <div class="searchResults">
   <div class="column1">
-    <!-- Zillow Rapid API result:
-    Should only display 1 house, need to fix -->
-    <span class="resultsHeader">Nearby Houses:</span>
+    <!-- Realtor Rapid API result: Displays similar homes -->
+    <span class="resultsHeader">Similar For Sale:</span>
     <div *ngFor="let homes of nearby_houses">
-      <p>Address:</p>
-      <p>{{homes.home.streetAddress}}}</p>
-      <p>{{homes.home.city}} {{homes.home.state}} {{homes.home.zipcode}}</p>
-      <p>Price: ${{homes.home.price}}</p>
-      <p>Number of bedrooms: {{homes.home.bedrooms}}</p>
-      <p>Number of baths: {{homes.home.bathrooms}}</p>
-      <p>Size: {{homes.home.livingArea}}</p>
+      <p>Address: {{homes.location.address.line}}</p>
+      <p>Price: ${{homes.list_price}}</p>
+      <p>Number of bedrooms: {{homes.description.beds}} || Number of baths: {{homes.description.baths}}</p>
     </div>
     <p>This is where the nearby houses within 5 mile radius shows up.</p>
   </div>
