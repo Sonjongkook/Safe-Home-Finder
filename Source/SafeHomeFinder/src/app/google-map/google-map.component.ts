@@ -12,11 +12,10 @@ export class GoogleMapComponent implements OnInit {
 
   map: any;
   home_list = [];
-  crime_list = [];
 
   /* Zillow API key and URL string */
   private updated_Zillow_URL: string;
-  //private Zillow_API = 'c81d24b394mshc408f494c11731dp14a2d9jsna66cfaba7a6c'; // Sandy's Zillow API Key
+  private Zillow_API = ''; /////////////// This is where the ZILLOW API KEY GOES ////////////////
 
   constructor(private _apiService: ApiService, private dataService: DataService) {
   }
@@ -55,25 +54,9 @@ export class GoogleMapComponent implements OnInit {
           console.error(err);
         });
       });
-
-    /* FBI Crime API call
-    * Parameters: dataService.sharedState
-    * --Will need to find way to find state if given Zipcode and/or Address */
-    this._apiService.getFBICrimes(this.dataService.sharedState)
-      .subscribe((responses: any) => {
-        this.crime_list = Object.keys(responses.results).map(function (k) {
-          var i = responses.results[0];
-          return {year: i.year, state: i.state_abbr, violent_crime: i.violent_crime, homicide: i.homicide,
-            robbery: i.robbery, aggravated_assault: i.aggravated_assault, property_crime: i.property_crime,
-            burglary: i.burglary, motor_vehicle_theft: i.motor_vehicle_theft};
-        });
-
-      });
   }
 
-  /* Method that initializes Google Map
-  * Parameters: home_list???? Please check this parameter.
-  */
+  /* Method that initializes Google Map */
   initMap(homelist) {
     let coords = new google.maps.LatLng(homelist[0].home.latitude, homelist[0].home.longitude);
     let mapOptions: google.maps.MapOptions = {
@@ -118,9 +101,6 @@ export class GoogleMapComponent implements OnInit {
         window.location.href = '/result';
 
       });
-
-
     }
-
   }
 }

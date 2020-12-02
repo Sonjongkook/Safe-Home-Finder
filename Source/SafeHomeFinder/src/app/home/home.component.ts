@@ -26,6 +26,4 @@ export class HomeComponent implements OnInit {
     this.dataService.sharedState = this.state.nativeElement.value;
     this.dataService.sharedZipcode = this.state.nativeElement.value;
   }
-
-
 }

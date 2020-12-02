@@ -33,11 +33,7 @@
 
 <div class="crimeReport">
   <!-- Socrata ODN API results -->
-  <span class="resultsHeader">Crime Score:</span>
-  <p>Crimes within the area:</p>
-  <div *ngFor = "let crime of crime_list">
-    <p>{{crime.description}} commited on {{crime.reported_date}} at {{crime.address}}</p>
-  </div>
+  <canvas id="canvas"> {{chart}}</canvas>
 </div>
 
 </div>

@@ -5,16 +5,4 @@
     <!-- Google Map results -->
     <div #map id="map"> </div>
 
-    <!-- FBI Crime API results -->
-    <div *ngFor = "let crime of crime_list" id="details">
-      <span class="resultsHeader">Crime Statistics for {{crime.state}} ({{crime.year}}):</span>
-      <p>Violent Crimes: {{crime.violent_crime}} </p>
-      <p>Homicides: {{crime.homicide}} </p>
-      <p>Robberies: {{crime.robbery}} </p>
-      <p>Aggravated Assaults: {{crime.aggravated_assault}} </p>
-      <p>Property Crimes: {{crime.property_crime}} </p>
-      <p>Burglaries: {{crime.burglary}} </p>
-      <p>Motor Vehicle Thefts: {{crime.motor_vehicle_theft}} </p>
-    </div>
-
 </div>
