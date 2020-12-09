@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../api.service';
 import {DataService} from '../data.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -10,19 +11,30 @@ import {DataService} from '../data.service';
 })
 export class GoogleMapComponent implements OnInit {
 
+  constructor(private _apiService: ApiService, private dataService: DataService, private router: Router) {
+  }
+
+  /* Realtor API key */
+  private Realtor_API = ''; ///////// This is where the REALTOR API KEY GOES ////////////
+
+  /* Variables to get the subscribed data from the dataService */
+  address: string;
+  city: string;
+  state: string;
+  zipcode: string;
+  propId: string;
+
+  /* Containers to store data */
   map: any;
   home_list = [];
 
-  /* Zillow API key and URL string */
-  private Realtor_API = ''; ///////// This is where the REALTOR API KEY GOES ////////////
-
-  constructor(private _apiService: ApiService, private dataService: DataService) {
-  }
-
   ngOnInit(): void {
-    // Variables accessed from Data Service Component.
-    // Printing to console for Verification.
-    console.log('Google Map Component: ' + this.dataService.sharedAddress);
+    /* Subscribing to the dataService component */
+    this.dataService.address.subscribe(address => this.address = address);
+    this.dataService.city.subscribe(city => this.city = city);
+    this.dataService.state.subscribe(state => this.state = state);
+    this.dataService.zipcode.subscribe(zipcode => this.zipcode = zipcode);
+    this.dataService.propID.subscribe(propID => this.propId = propID);
 
     /* Realtor Rapid API call - Displays 10 of the newest listings */
     fetch('https://realtor.p.rapidapi.com/properties/v2/list-for-sale?city=Kansas%20City&limit=15&offset=0&state_code=MO&sort=newest&is_pending=false&is_new_plan=false', {
@@ -34,7 +46,6 @@ export class GoogleMapComponent implements OnInit {
     })
       .then(response => {
         return response.json().then((data) => {
-          //console.log(data);
           this.home_list = data.properties;
           return this.home_list;
         }).then((list) => {
@@ -46,7 +57,7 @@ export class GoogleMapComponent implements OnInit {
   }
 
   /* Method that initializes Google Map */
-  initMap(homelist) {
+  initMap(homelist): void {
     let coords = new google.maps.LatLng(homelist[0].address.lat, homelist[0].address.lon);
     let mapOptions: google.maps.MapOptions = {
       center: coords,
@@ -56,15 +67,14 @@ export class GoogleMapComponent implements OnInit {
 
     this.map = new google.maps.Map(document.getElementById('map'), mapOptions
     );
-    console.log(homelist);
 
     // Iterate through the home_list and add markers.
     for (let house of homelist) {
-      console.log(house.address.lat);
       let coords = new google.maps.LatLng(house.address.lat, house.address.lon);
       let marker: google.maps.Marker = new google.maps.Marker({
         map: this.map,
-        position: coords
+        position: coords,
+        title: house.property_id
       });
 
       // Displays the home's selling status, price, address, image, # bedrooms, and # bathrooms.
@@ -86,9 +96,12 @@ export class GoogleMapComponent implements OnInit {
       });
 
       // When click the marker redirect to the result page.
-      marker.addListener('click', () =>{
-        window.location.href = '/result';
-
+      // Also assigns required property id, lat, and long to use for following page.
+      marker.addListener('click', () => {
+        this.dataService.setPropID(marker.getTitle());
+        this.dataService.setLat(String(marker.getPosition().lat()));
+        this.dataService.setLong(String(marker.getPosition().lng()));
+        this.router.navigate(['/result']);
       });
     }
   }

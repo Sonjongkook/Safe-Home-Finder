@@ -15,14 +15,24 @@ export class ResultComponent implements OnInit {
 
   private Realtor_API = '';  /////// This is where the REALTOR API KEY GOES //////
 
-  /* list for great schools*/
+  /* Variables to get the subscribed data from the dataService */
+  newAddr: string;
+  newCity: string;
+  newState: string;
+  newZipcode: string;
+  newLatitude: string;
+  newLongitude: string;
+  newPropID: string;
+
+  /* list for Great Schools*/
   schools_list: any;
 
-  /* list for zillow houses */
+  /* list for Realtor houses */
   home_list = [];
   nearby_houses = [];
 
   /* Variables for Socrata data*/
+  crime_list: any;
   crime_chart = [];
   crime_count = [];
 
@@ -31,18 +41,22 @@ export class ResultComponent implements OnInit {
   colors = [];
 
   ngOnInit(): void {
-    // Testing
-     //this.dataService.sharedState = 'MO';
-     //this.dataService.sharedLat = '39.092882';
-     //this.dataService.sharedLong = '-94.576823';
-     //this.dataService.sharedZipcode = '64130';
-     //this.dataService.sharedPropertyID = '7744104915';
+    // Getting the shared data
+    this.dataService.propID.subscribe(propID => this.newPropID = propID);
+    this.dataService.address.subscribe(address => this.newAddr = address);
+    this.dataService.city.subscribe(city => this.newCity = city);
+    this.dataService.state.subscribe(state => this.newState = state);
+    this.dataService.zipcode.subscribe(zipcode => this.newZipcode = zipcode);
+    this.dataService.lat.subscribe( lat => this.newLatitude = lat);
+    this.dataService.long.subscribe( long => this.newLongitude = long);
 
-    if (this.dataService.sharedPropertyID !== undefined) {
-      /* Realtor API NEARBY WITHIN 5 MILES call
-      * -- Will use the home's property ID number */
-      fetch('https://realtor.p.rapidapi.com/properties/v2/list-similar-homes?property_id=' +
-        this.dataService.sharedPropertyID, {
+
+    if (this.newPropID !== undefined) {
+
+      /* Realtor API displays house that was clicked on
+      * Uses the home's property ID */
+      fetch('https://realtor.p.rapidapi.com/properties/list-similarities?property_id=' + this.newPropID.substring(1, this.newPropID.length)
+        + '&limit=5&prop_status=for_sale', {
         method: 'GET',
         headers: {
           'x-rapidapi-key': this.Realtor_API,
@@ -51,42 +65,60 @@ export class ResultComponent implements OnInit {
       })
         .then(response => {
           return response.json().then((data) => {
-            if (data.data.home === null) {
+            if (data.results.similar_homes.count === null) {
               console.log('Returned similar homes is null.');
-            } else if (data.data.home.related_homes.count === 0) {
+            } else if (data.results.similar_homes.count === 0) {
               console.log('Returned similar homes count is 0.');
             } else {
-              this.nearby_houses = data.data.home.related_homes.results;
+              this.nearby_houses = data.results.similar_homes.properties;
             }
           }).catch(err => {
             console.error(err);
           });
         });
+
+      /* Realtor API similar homes for sale
+      * Uses the home's property ID */
+      fetch('https://realtor.p.rapidapi.com/properties/v2/detail?property_id=' + this.newPropID, {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': this.Realtor_API,
+        'x-rapidapi-host': 'realtor.p.rapidapi.com'
+      }
+    })
+      .then(response => {
+        return response.json().then((data) => {
+            this.home_list = data.properties;
+        }).catch(err => {
+          console.error(err);
+        });
+      });
     }
+
     else{
-      console.log('Error: Shared Property ID is ' + this.dataService.sharedPropertyID);
+      console.log('Property ID is ' + this.newPropID);
     }
 
 
-    if (this.dataService.sharedState !== undefined){
+    if (this.newState !== undefined && this.newLatitude !== undefined && this.newLongitude !== undefined){
       /* Great Schools API call
       *  -- Will use the shared state, shared lat, and shared long */
-        this._apiService.getSchools(this.dataService.sharedState, this.dataService.sharedLat, this.dataService.sharedLong)
+        this._apiService.getSchools(this.newState, this.newLatitude, this.newLongitude)
           .subscribe(data => this.schools_list = data.schools.school);
      }
      else{
-      console.log('Error: Shared state is ' + this.dataService.sharedState);
+      console.log('State, Lattitude, and Longitude is ' + this.newState + ' ' + this.newLatitude + ' ' + this.newLongitude);
      }
 
-    if (this.dataService.sharedZipcode !== undefined){
       /* Socrata API call and Creation of Chart
-      * -- Will use the shared zipcode */
+      * Uses the shared zipcode */
+    if (this.newZipcode !== undefined) {
       this._apiService.getSocrataCrimes()
         .subscribe((responses: any) => {
           Object.keys(responses).map(k => {
-            if (responses[k].zip_code === this.dataService.sharedZipcode){
+            if (responses[k].zip_code === this.newZipcode) {
               const i = responses[k].description;
-              if (i !== undefined){
+              if (i !== undefined) {
                 this.crime_chart.push(i);
               }
             }
@@ -97,37 +129,39 @@ export class ResultComponent implements OnInit {
           this.createCount([...new Set(this.crime_chart)]);
           this.randomizeColors();
 
-          /* Create the chart */
-          this.chart = new Chart('canvas', {
-            type: 'bar',
-            data: {
-              labels: [...new Set(this.crime_chart)], // Pass in unique set as the label
-              datasets: [
-                {
-                  label: 'Number of Reported Crimes Committed (2020) ' + this.dataService.sharedZipcode,
-                  data: this.crime_count, // Insert the associated data
-                  backgroundColor: this.colors,
-                  borderColor: this.colors,
-                  borderWidth: 1
-                }]
-            },
-            options: {
-              scales: {
-                yAxes: [{
-                  ticks: {
-                    beginAtZero: true
-                  }
-                }]
+          if (this.crime_chart.length === 0) {
+            console.log('The crime list is empty!!');
+          } else {
+
+            /* Create the chart */
+            this.chart = new Chart('canvas', {
+              type: 'bar',
+              data: {
+                labels: [...new Set(this.crime_chart)], // Pass in unique set as the label
+                datasets: [
+                  {
+                    label: 'Number of Reported Crimes Committed (2020) ' + this.newZipcode,
+                    data: this.crime_count, // Insert the associated data
+                    backgroundColor: this.colors,
+                    borderColor: this.colors,
+                    borderWidth: 1
+                  }]
+              },
+              options: {
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      beginAtZero: true
+                    }
+                  }]
+                }
               }
-            }
-          });
+            });
+          }
         });
-
+    } else {
+      console.log('Zipcode is ' + this.newZipcode);
     }
-    else{
-      console.log('Error: Shared zipcode is ' + this.dataService.sharedZipcode);
-    }
-
 
   }
 

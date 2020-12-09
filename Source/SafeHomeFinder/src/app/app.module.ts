@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { ResultComponent } from './result/result.component';
 import {AppRoutingModule} from './app-routing.module';
 import { GoogleMapComponent } from './google-map/google-map.component';
+import {DataService} from './data.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { GoogleMapComponent } from './google-map/google-map.component';
     HttpClientModule,
     AppRoutingModule,
 ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

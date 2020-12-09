@@ -1,15 +1,9 @@
 <div class="mainTable">
-
   <div class="houseResult">
     <span class="resultsHeader">Details on House:</span>
     <div *ngFor="let house of home_list">
-      <p>Address:</p>
-      <p>{{house.home.streetAddress}}}</p>
-      <p>{{house.home.city}} {{house.home.state}} {{house.home.zipcode}}</p>
-      <p>Price: ${{house.home.price}}</p>
-      <p>Number of bedrooms: {{house.home.bedrooms}}</p>
-      <p>Number of baths: {{house.home.bathrooms}}</p>
-      <p>Size: {{house.home.livingArea}}</p>
+      <p>{{house.description}}}</p>
+      <p>Price: ${{house.price}}</p>
     </div>
     <p>This is where the main house goes.</p>
   </div>

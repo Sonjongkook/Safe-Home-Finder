@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('addressInput') addr: ElementRef;
   @ViewChild('cityInput') city: ElementRef;
   @ViewChild('stateInput') state: ElementRef;
-  @ViewChild('zipcodeInput') zipcode: Element;
+  @ViewChild('zipcodeInput') zipcode: ElementRef;
 
   constructor(private dataService: DataService) {
   }
@@ -21,9 +21,17 @@ export class HomeComponent implements OnInit {
 
   /* Takes user input from Search page and allows access to other components */
   getSearchResults(){
-    this.dataService.sharedAddress = this.addr.nativeElement.value;
-    this.dataService.sharedCity = this.city.nativeElement.value;
-    this.dataService.sharedState = this.state.nativeElement.value;
-    this.dataService.sharedZipcode = this.state.nativeElement.value;
+    if (this.addr.nativeElement.value !== null){
+      this.dataService.setAddress(this.addr.nativeElement.value);
+    }
+    if (this.city.nativeElement.value !== null){
+      this.dataService.setCity(this.city.nativeElement.value);
+    }
+    if (this.state.nativeElement.value !== null){
+      this.dataService.setState(this.state.nativeElement.value);
+    }
+    if (this.zipcode.nativeElement.value !== null){
+      this.dataService.setZip(this.zipcode.nativeElement.value);
+    }
   }
 }
