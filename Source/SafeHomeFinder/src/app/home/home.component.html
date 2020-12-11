@@ -8,43 +8,16 @@
   </head>
 
 
-  <div class="mainTable">
 
-    <!-- Navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top" style="width:100%">
-      <div class="container">
-        <div class="row">
-          <a href="home.component.html">
-            <img src="\assets\project_logo.jpg" width="130px" />s
-          </a>
-          <div class="col-sm-6">
-            <br />
-            <button type="button" data-toggle="collapse" data-target=".nav-collapse" style="background-color:transparent; color:white; border-color:transparent; font-family:Helvetica">
-              ▼ Navigation
-            </button>
-          </div>
-          <div class="col-sm-6 nav-collapse collapse" style="width:10%">
-            <ul class="nav navbar-nav" style="border-left:4px solid white">
-              <li class="active"><a style="color:white" href="#">Home</a></li>
-              <li><a style="color:white"href="#">About</a></li>
-              <li><a style="color:white"href="#">Map</a></li>
-              <li><a style="color:white"href="#">Search</a></li>
-              <li><a style="color:white"href="#">Log Out</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!--Title of site -->
+    <div id="Title">Safe Home Finder</div>
 
-  <!--Title of site -->
-  <div id="Title">Safe Home Finder</div>
-
-  <!-- User Input Fields -->
-  <fieldset class="searchTable">
-    <label for="address"> Address:</label><input #addressInput required id="address" type="text" name="address" id="inputSize"><br>
-    <label for="city"> City:</label><input #cityInput required id="city" type="text" name="city" >
-    <label for="state"> State:</label><input #stateInput required id="state" type="text" name="state">
-    <label for="zipcode"> Zipcode:</label><input #zipcodeInput required id="zipcode" type="text" name="zipcode"><br>
-    <button routerLink="/map" (click)="getSearchResults()" class="btn btn primary col-lg-2 col-lg-offset-5 " type="button">Search</button>
-  </fieldset>
+    <!-- User Input Fields -->
+    <fieldset class="searchTable">
+      <label for="address"> Address:</label><input #addressInput required id="address" type="text" name="address" id="inputSize"><br>
+      <label for="city"> City:</label><input #cityInput required id="city" type="text" name="city" >
+      <label for="state"> State:</label><input #stateInput required id="state" type="text" name="state">
+      <label for="zipcode"> Zipcode:</label><input #zipcodeInput required id="zipcode" type="text" name="zipcode"><br>
+      <button routerLink="/map" (click)="getSearchResults()" class="btn btn primary col-lg-2 col-lg-offset-5 " type="button">Search</button>
+    </fieldset>
 </div>
