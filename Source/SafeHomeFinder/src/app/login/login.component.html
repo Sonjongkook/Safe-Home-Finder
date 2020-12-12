@@ -13,18 +13,17 @@
     </h1>
 
     <!-- this div displays only when user is not-logged-in -->
-    <div *ngIf="!(authService.user | async)">
+    <div class="inpt-container" *ngIf="!(authService.user | async)">
       <!-- these input fields takes email and password from user -->
-      <input type="text" [(ngModel)]="email" placeholder="Enter email"/>
-      <input type="password" [(ngModel)]="password" placeholder="Enter password"/>
+      <input class="inpt" type="text" [(ngModel)]="email" placeholder="Enter email"/> <br>
+      <input class="inpt" type="password" [(ngModel)]="password" placeholder="Enter password"/>
 
       <!-- user click this button to signup -->
-      <button (click)="signup()" [disabled]="!email || !password">
+      <button class="row col-sm-12 btn" (click)="signup()" [disabled]="!email || !password">
         Signup
-      </button>
-
+      </button> <br>
       <!-- user click this button to login -->
-      <button (click)="login()" [disabled]="!email || !password">
+      <button class="row col-sm-12 btn" (click)="login()" [disabled]="!email || !password">
         Login
       </button>
     </div>
@@ -36,7 +35,7 @@
 
     <!-- user click this button to logout -->
     <!-- this button displays only when user is logged-in -->
-    <button (click)="logout()" *ngIf="authService.user | async">
+    <button class="btn" (click)="logout()" *ngIf="authService.user | async">
       Logout
     </button>
   </div>

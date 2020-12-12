@@ -3,34 +3,33 @@
   height: 100%;
   width:82%;
   margin:auto;
-  alignment: center;
   padding: 25px 25px 25px 25px;
 }
 
 #Title {
   font-size: 35px;
   font-family: "Arial Narrow";
-  color: cadetblue;
+  color: #ba82a8;
 }
 
 .resultsHeader {
   font-size: 20px;
   font-weight: bold;
-  color: dimgray;
+  color: white;
   font-family: "Arial Narrow";
 }
 
 .smallHeader {
   font-size: 25px;
   font-weight: bold;
-  color: dimgray;
+  color: white;
   font-family: "Arial Narrow";
 }
 
 .searchTable{
   padding: 25px 25px 25px 25px;
   border-style: none;
-  background-color: cadetblue;
+  background-color: #ba82a8;
   font-size: 20px;
   font-family: "Arial Narrow";
 }
@@ -45,6 +44,10 @@
 
 .houseResult {
   flex: 100%;
+}
+
+.houseInfo {
+  color: white;
 }
 
 .column {
@@ -69,12 +72,13 @@
 }
 
 .similarImagesContainer {
-  border: solid black 2px;
+  color: white;
+  border: solid white 2px;
   margin: 1px 5px 5px 1px;
 }
 
 .similarImages {
-  border: solid black 1px;
+  border: solid white 1px;
   margin: 5px 5px 5px 5px;
 }
 

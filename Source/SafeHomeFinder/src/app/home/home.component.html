@@ -8,11 +8,21 @@
     <!-- User Input Fields -->
     <fieldset class="searchTable">
       <div class="container">
-        <label for="address"> Address:</label><input #addressInput required id="address" type="text" name="address" id="inputSize"> <br>
-        <label for="city"> City:</label><input #cityInput required id="city" type="text" name="city" > (e.g. Kansas City) <br>
-        <label for="state"> State:</label> <input #stateInput required id="state" type="text" name="state"> (e.g. MO) <br>
-        <label for="zipcode"> Zipcode:</label><input #zipcodeInput required id="zipcode" type="text" name="zipcode"> (e.g. 12345) <br>
-        <button routerLink="/map" (click)="getSearchResults()" class="btn btn primary col-lg-2 col-lg-offset-5 " type="button">Search</button>
+        <div class="row">
+          <div class="col-sm-2">
+            <label for="address"> Address:</label> <br>
+            <label for="city"> City:</label> <br>
+            <label for="state"> State:</label>  <br>
+            <label for="zipcode"> Zipcode:</label> <br>
+          </div>
+          <div class="col-sm-10">
+            <input #addressInput required id="address" type="text" name="address" id="inputSize"> 
+            <input #cityInput required id="city" type="text" name="city" > (e.g. Kansas City) <br>
+            <input #stateInput required id="state" type="text" name="state"> (e.g. MO) <br>
+            <input #zipcodeInput required id="zipcode" type="text" name="zipcode"> (e.g. 12345) <br>
+          </div>
+          <button routerLink="/map" (click)="getSearchResults()" class="btn btn primary col-lg-2 col-lg-offset-5" type="button">Search</button>
+        </div>
       </div>
     </fieldset>
 </div>
