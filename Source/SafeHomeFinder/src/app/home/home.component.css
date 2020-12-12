@@ -1,42 +1,41 @@
 /* MAIN container; 82% centered. */
 .mainTable {
+  color: white;
   height: 100%;
-  width:82%;
+  width:100%;
   margin:auto;
-  alignment: center;
+  align-items: center;
 }
 
 #Title {
+  text-align: center;
   font-size: 35px;
   font-family: "Arial Narrow";
-  color: cadetblue;
+  color:white;
 }
 
 .resultsHeader {
   font-size: 20px;
   font-weight: bold;
-  color: dimgray;
+  color: #ba82a8;
   font-family: "Arial Narrow";
 }
 
 .searchTable{
   padding: 25px 25px 25px 25px;
   border-style: none;
-  background-color: cadetblue;
+  background-color:#ba82a8;
   font-size: 20px;
   font-family: "Arial Narrow";
 }
 
+.btn{
+  color: white;
+  background-color: #343A40;
+}
+
 #inputSize {
   min-width: 500px;
-}
-
-.navbar {
-  background-color:#999999;
-}
-
-.navbar .a {
-  color:white;
 }
 
 .searchResults {

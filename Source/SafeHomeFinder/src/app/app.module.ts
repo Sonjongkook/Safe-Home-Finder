@@ -6,6 +6,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { ResultComponent } from './result/result.component';
 import {AppRoutingModule} from './app-routing.module';
+import {NavbarComponent} from './navbar/navbar.component';
 import { GoogleMapComponent } from './google-map/google-map.component';
 import {DataService} from './data.service';
 import {AuthService} from './auth.service';
@@ -24,6 +25,7 @@ import {FormsModule} from '@angular/forms';
     ResultComponent,
     GoogleMapComponent,
     LoginComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
