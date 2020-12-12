@@ -3,21 +3,27 @@
   height: 100%;
   width:100%;
   margin:auto;
-  alignment: center;
 }
 
 /* Header CSS */
 .resultsHeader {
+  text-align: center;
   font-family: "Arial Narrow";
-  color: black;
+  color: white;
   font-weight: bolder;
   font-size: 25px;
+}
+
+#Title {
+  text-align: center;
+  font-size: 35px;
+  font-family: "Arial Narrow";
+  color:white;
 }
 
 /* Google Map */
 #map{
   height: 1000px !important;
-
 }
 
 html, body {
@@ -29,6 +35,6 @@ html, body {
 /* CSS details following Header */
 #details {
   font-family: "Arial Narrow";
-  color: cadetblue;
+  color: white;
 }
 

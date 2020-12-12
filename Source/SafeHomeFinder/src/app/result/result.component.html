@@ -3,7 +3,7 @@
   <div class="column">
     <!-- Realtor Rapid API result:
     Displays selected house information -->
-    <div *ngFor="let house of home_list">
+    <div class="houseInfo" *ngFor="let house of home_list">
       <span class="smallHeader">House Details</span>
       <p>Price: ${{house.price}}</p>
       <p>Date listed: {{house.list_date}}</p>
@@ -30,7 +30,7 @@
       <!-- Realtor Rapid API result:
       Displays similar houses for sale  -->
       <span class="resultsHeader">Similar Homes For Sale:</span>
-      <div *ngFor="let homes of nearby_houses" class="similarImagesContainer">
+      <div class="similarImagesContainer" *ngFor="let homes of nearby_houses" >
         <img class="similarImages" align="left" height="165px" width="165px" [src]="homes.additional_info.photo_url">
         <p>Price: ${{homes.list_price}}</p>
         <p>Address: {{homes.location.address.line}}  {{homes.location.address.city}}, {{homes.location.address.state_code}}.
