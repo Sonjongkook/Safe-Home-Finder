@@ -1,7 +1,5 @@
-.navbar {
-  background-color:#999999;
-}
-
-.navbar .a {
-  color:white;
+:host {
+    background-color:#343A40;
+    size: 200px 200px;
+    display: block;
 }
