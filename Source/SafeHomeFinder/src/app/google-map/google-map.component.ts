@@ -15,7 +15,7 @@ export class GoogleMapComponent implements OnInit {
   }
 
   /* Realtor API key */
-  private Realtor_API = ''; ///////// This is where the REALTOR API KEY GOES ////////////
+  private Realtor_API = '90ef9ea20cmsh133dddc56df0deep178293jsnada2d7c2b39a'; ///////// This is where the REALTOR API KEY GOES ////////////
 
   /* Variables to get the subscribed data from the dataService */
   address: string;

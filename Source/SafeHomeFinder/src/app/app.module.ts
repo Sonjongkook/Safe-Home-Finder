@@ -8,6 +8,14 @@ import { ResultComponent } from './result/result.component';
 import {AppRoutingModule} from './app-routing.module';
 import { GoogleMapComponent } from './google-map/google-map.component';
 import {DataService} from './data.service';
+import {AuthService} from './auth.service';
+import {environment} from '../environments/environment';
+
+//Fire base module
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import { LoginComponent } from './login/login.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,13 +23,17 @@ import {DataService} from './data.service';
     HomeComponent,
     ResultComponent,
     GoogleMapComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-],
-  providers: [DataService],
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    FormsModule
+  ],
+  providers: [DataService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

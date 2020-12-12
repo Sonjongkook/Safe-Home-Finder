@@ -8,10 +8,10 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class ApiService {
 
   /* Great Schools API URL specifically for KCMO */
-  private GreatSchoolsAPIKey = '';  ///////// This is where the GREAT SCHOOLS API KEY GOES ////////////////
+  private GreatSchoolsAPIKey = '5b9df1e1eca307c301676bc5a9e68333';  ///////// This is where the GREAT SCHOOLS API KEY GOES ////////////////
 
   /* Socrata API URL specifically for KCMO */
-  private Socrata_KCMO_URL = 'https://data.kcmo.org/resource/vsgj-uufz.json';
+  // private Socrata_KCMO_URL = 'https://data.kcmo.org/resource/vsgj-uufz.json';
 
   constructor(private http: HttpClient) {
   }
