@@ -4,6 +4,7 @@
   width:82%;
   margin:auto;
   alignment: center;
+  padding: 25px 25px 25px 25px;
 }
 
 #Title {
@@ -14,6 +15,13 @@
 
 .resultsHeader {
   font-size: 20px;
+  font-weight: bold;
+  color: dimgray;
+  font-family: "Arial Narrow";
+}
+
+.smallHeader {
+  font-size: 25px;
   font-weight: bold;
   color: dimgray;
   font-family: "Arial Narrow";
@@ -35,15 +43,38 @@
   display: flex;
 }
 
-.searchResults .column1 {
+.houseResult {
+  flex: 100%;
+}
+
+.column {
+  flex: 80%;
+}
+
+.column1 {
   flex: 50%;
 }
 
-.searchResults .column2 {
+.column2 {
   flex: 50%;
 }
 
 .searchResults .crimeReport {
   flex: 100%;
+}
+
+.container {
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+.similarImagesContainer {
+  border: solid black 2px;
+  margin: 1px 5px 5px 1px;
+}
+
+.similarImages {
+  border: solid black 1px;
+  margin: 5px 5px 5px 5px;
 }
 

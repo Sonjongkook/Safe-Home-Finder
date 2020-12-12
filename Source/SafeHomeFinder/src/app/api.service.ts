@@ -28,4 +28,5 @@ export class ApiService {
   getSocrataCrimes() {
     return this.http.get(this.Socrata_KCMO_URL);
   }
+
 }

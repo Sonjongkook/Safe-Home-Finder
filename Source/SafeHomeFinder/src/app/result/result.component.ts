@@ -16,13 +16,13 @@ export class ResultComponent implements OnInit {
   private Realtor_API = '';  /////// This is where the REALTOR API KEY GOES //////
 
   /* Variables to get the subscribed data from the dataService */
-  newAddr: string;
-  newCity: string;
-  newState: string;
-  newZipcode: string;
-  newLatitude: string;
-  newLongitude: string;
-  newPropID: string;
+  private newAddr: string;
+  private newCity: string;
+  private newState: string;
+  private newZipcode: string;
+  private newLatitude: string;
+  private newLongitude: string;
+  private newPropID: string;
 
   /* list for Great Schools*/
   schools_list: any;
@@ -32,7 +32,6 @@ export class ResultComponent implements OnInit {
   nearby_houses = [];
 
   /* Variables for Socrata data*/
-  crime_list: any;
   crime_chart = [];
   crime_count = [];
 
@@ -41,6 +40,7 @@ export class ResultComponent implements OnInit {
   colors = [];
 
   ngOnInit(): void {
+
     // Getting the shared data
     this.dataService.propID.subscribe(propID => this.newPropID = propID);
     this.dataService.address.subscribe(address => this.newAddr = address);
@@ -49,7 +49,6 @@ export class ResultComponent implements OnInit {
     this.dataService.zipcode.subscribe(zipcode => this.newZipcode = zipcode);
     this.dataService.lat.subscribe( lat => this.newLatitude = lat);
     this.dataService.long.subscribe( long => this.newLongitude = long);
-
 
     if (this.newPropID !== undefined) {
 
@@ -80,19 +79,19 @@ export class ResultComponent implements OnInit {
       /* Realtor API similar homes for sale
       * Uses the home's property ID */
       fetch('https://realtor.p.rapidapi.com/properties/v2/detail?property_id=' + this.newPropID, {
-      method: 'GET',
-      headers: {
-        'x-rapidapi-key': this.Realtor_API,
-        'x-rapidapi-host': 'realtor.p.rapidapi.com'
-      }
-    })
-      .then(response => {
-        return response.json().then((data) => {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-key': this.Realtor_API,
+          'x-rapidapi-host': 'realtor.p.rapidapi.com'
+        }
+      })
+        .then(response => {
+          return response.json().then((data) => {
             this.home_list = data.properties;
-        }).catch(err => {
-          console.error(err);
+          }).catch(err => {
+            console.error(err);
+          });
         });
-      });
     }
 
     else{
@@ -103,25 +102,21 @@ export class ResultComponent implements OnInit {
     if (this.newState !== undefined && this.newLatitude !== undefined && this.newLongitude !== undefined){
       /* Great Schools API call
       *  -- Will use the shared state, shared lat, and shared long */
-        this._apiService.getSchools(this.newState, this.newLatitude, this.newLongitude)
-          .subscribe(data => this.schools_list = data.schools.school);
-     }
-     else{
-      console.log('State, Lattitude, and Longitude is ' + this.newState + ' ' + this.newLatitude + ' ' + this.newLongitude);
-     }
+      this._apiService.getSchools(this.newState, this.newLatitude, this.newLongitude)
+        .subscribe(data => this.schools_list = data.schools.school);
+    }
+    else{
+      console.log('State, Latitude, and Longitude is ' + this.newState + ' ' + this.newLatitude + ' ' + this.newLongitude);
+    }
 
-      /* Socrata API call and Creation of Chart
-      * Uses the shared zipcode */
+
+    /* Socrata API call and Creation of Chart
+    * Uses the shared zipcode */
     if (this.newZipcode !== undefined) {
       this._apiService.getSocrataCrimes()
         .subscribe((responses: any) => {
           Object.keys(responses).map(k => {
-            if (responses[k].zip_code === this.newZipcode) {
-              const i = responses[k].description;
-              if (i !== undefined) {
-                this.crime_chart.push(i);
-              }
-            }
+            this.findByZipcode(responses[k].zip_code, responses[k].description, this.newZipcode);
           });
 
           /* Sort the array and create another array for count of offenses */
@@ -148,10 +143,13 @@ export class ResultComponent implements OnInit {
                   }]
               },
               options: {
+                responsive: true,
+                maintainAspectRatio: true,
                 scales: {
                   yAxes: [{
                     ticks: {
-                      beginAtZero: true
+                      beginAtZero: true,
+                      stepSize: 1,
                     }
                   }]
                 }
@@ -185,7 +183,7 @@ export class ResultComponent implements OnInit {
     const visibility = 0.2;
     const maxValue = 255;
     const minValue = 1;
-    this.crime_count.forEach(item => {
+    this.crime_count.forEach(() => {
       const red = Math.floor(Math.random() * (maxValue + minValue));
       const green = Math.floor(Math.random() * ((maxValue + minValue)));
       const blue = Math.floor(Math.random() * ((maxValue + minValue)));
@@ -193,5 +191,13 @@ export class ResultComponent implements OnInit {
       this.colors.push(String('rgba(' + items.toString() + ')'));
     });
   }
+
+  /* Helper function that finds related crimes based on zipcode */
+  findByZipcode(responseZip: any, responseDesc: any, sharZip: any): void {
+    if (responseZip === sharZip && responseDesc !== undefined){
+      this.crime_chart.push(responseDesc);
+    }
+  }
+
 
 }

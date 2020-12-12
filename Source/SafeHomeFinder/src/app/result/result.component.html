@@ -1,40 +1,57 @@
 <div class="mainTable">
-  <div class="houseResult">
-    <span class="resultsHeader">Details on House:</span>
+
+  <div class="column">
+    <!-- Realtor Rapid API result:
+    Displays selected house information -->
     <div *ngFor="let house of home_list">
-      <p>{{house.description}}}</p>
+      <span class="smallHeader">House Details</span>
       <p>Price: ${{house.price}}</p>
+      <p>Date listed: {{house.list_date}}</p>
+      <p>Type of property: {{house.style}}</p>
+      <p>Year Built: {{house.year_built}}</p>
+      <span class="smallHeader">Features</span>
+      <p>Number of bedrooms: {{house.beds}}</p>
+      <p>Number of bathrooms: {{house.baths}}</p>
+      <p>Number of garages: {{house.garage}}</p>
+      <span class="smallHeader">Description</span>
+      <p>{{house.description}}</p>
     </div>
-    <p>This is where the main house goes.</p>
   </div>
-
-<!-- Search Results -->
-<div class="searchResults">
-  <div class="column1">
-    <!-- Realtor Rapid API result: Displays similar homes -->
-    <span class="resultsHeader">Similar For Sale:</span>
-    <div *ngFor="let homes of nearby_houses">
-      <p>Address: {{homes.location.address.line}}</p>
-      <p>Price: ${{homes.list_price}}</p>
-      <p>Number of bedrooms: {{homes.description.beds}} || Number of baths: {{homes.description.baths}}</p>
-    </div>
-    <p>This is where the nearby houses within 5 mile radius shows up.</p>
-  </div>
-
-  <div class="column2">
-    <!-- Great Schools API results -->
-    <span class="resultsHeader">Nearby Schools:</span>
-    <div *ngFor="let school of schools_list">
-      <p>{{school.name}}</p>
-    </div>
-    <p>This is where the nearby schools within 5 mile radius shows up.</p>
-  </div>
-</div>
-
   <div class="crimeReport">
     <!-- Socrata ODN API results -->
-    <canvas id="canvas"> {{chart}}</canvas>
+    <div class="container">
+      <canvas id="canvas"> {{chart}}</canvas>
+    </div>
   </div>
 
-</div>
+  <!-- Search Results -->
+  <div class="searchResults">
+    <div class="column1">
+      <!-- Realtor Rapid API result:
+      Displays similar houses for sale  -->
+      <span class="resultsHeader">Similar Homes For Sale:</span>
+      <div *ngFor="let homes of nearby_houses" class="similarImagesContainer">
+        <img class="similarImages" align="left" height="165px" width="165px" [src]="homes.additional_info.photo_url">
+        <p>Price: ${{homes.list_price}}</p>
+        <p>Address: {{homes.location.address.line}}  {{homes.location.address.city}}, {{homes.location.address.state_code}}.
+          {{homes.location.address.postal_code}}</p>
+        <p>Total Sq Ft: {{homes.status.sqft}}</p>
+        <p>Number of bedrooms: {{homes.description.beds}}</p>
+        <p>Number of baths: {{homes.description.baths}}</p>
+      </div>
+    </div>
 
+    <div class="column2">
+      <!-- Great Schools API results -->
+      <span class="resultsHeader">Nearby Schools:</span>
+      <div *ngFor="let school of schools_list" class="similarImagesContainer">
+        <p>{{school.name}} - {{school.gradeRange}} ({{school.type}})</p>
+        <p>{{school.address}}</p>
+        <p>Phone number: {{school.phone}}</p>
+        <p>Distance from House: {{school.distance}}</p>
+        <p>Parent rating: {{school.parentRating}}/10</p>
+        <p>School website: <a target="_blank" href="http://{{school.website}}" rel="noopener">{{school.website}}</a></p>
+      </div>
+    </div>
+  </div>
+</div>

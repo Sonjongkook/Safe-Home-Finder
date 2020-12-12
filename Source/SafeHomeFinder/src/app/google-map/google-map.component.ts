@@ -29,12 +29,16 @@ export class GoogleMapComponent implements OnInit {
   home_list = [];
 
   ngOnInit(): void {
+
     /* Subscribing to the dataService component */
     this.dataService.address.subscribe(address => this.address = address);
     this.dataService.city.subscribe(city => this.city = city);
     this.dataService.state.subscribe(state => this.state = state);
     this.dataService.zipcode.subscribe(zipcode => this.zipcode = zipcode);
     this.dataService.propID.subscribe(propID => this.propId = propID);
+
+    /* Testing to ensure that shared data remains */
+    console.log('this is all the shared data ' + this.address + ' ' + this.city + ' ' + this.state + ' ' + this.zipcode);
 
     /* Realtor Rapid API call - Displays 10 of the newest listings */
     fetch('https://realtor.p.rapidapi.com/properties/v2/list-for-sale?city=Kansas%20City&limit=15&offset=0&state_code=MO&sort=newest&is_pending=false&is_new_plan=false', {
