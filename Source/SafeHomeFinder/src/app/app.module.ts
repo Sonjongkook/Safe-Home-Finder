@@ -8,8 +8,10 @@ import { ResultComponent } from './result/result.component';
 import {AppRoutingModule} from './app-routing.module';
 import {NavbarComponent} from './navbar/navbar.component';
 import { GoogleMapComponent } from './google-map/google-map.component';
-import {DataService} from './data.service';
-import {AuthService} from './auth.service';
+import {DataService} from './service/data.service';
+import {AuthService} from './service/auth.service';
+import { SignupComponent } from './signup/signup.component';
+
 import {environment} from '../environments/environment';
 
 //Fire base module
@@ -17,6 +19,8 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from '@angular/forms';
+import {UserService} from './service/user.service';
+
 
 @NgModule({
   declarations: [
@@ -26,6 +30,7 @@ import {FormsModule} from '@angular/forms';
     GoogleMapComponent,
     LoginComponent,
     NavbarComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,7 @@ import {FormsModule} from '@angular/forms';
     AngularFireAuthModule,
     FormsModule
   ],
-  providers: [DataService, AuthService],
+  providers: [DataService, AuthService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

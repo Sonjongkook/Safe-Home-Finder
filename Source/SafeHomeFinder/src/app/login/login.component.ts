@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../auth.service';
+import {AuthService} from '../service/auth.service';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -15,14 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(public authService: AuthService) { }
 
-  signup() {
-    this.authService.signup(this.email, this.password);
-    //initialze email and password
-    this.email = this.password = '';
-  }
-
   login() {
-    this.authService.login(this.email, this.password,  this.LoginStatus);
+    this.authService.login(this.email, this.password, this.LoginStatus);
     //initialze email and password
     this.email = this.password = '';
   }

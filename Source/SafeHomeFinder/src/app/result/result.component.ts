@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiService} from '../api.service';
-import {DataService} from '../data.service';
+import {ApiService} from '../service/api.service';
+import {DataService} from '../service/data.service';
 import {Chart} from 'node_modules/chart.js';
+import {House} from '../model/house.model';
+import {AngularFirestore} from '@angular/fire/firestore';
+
+
+
 
 @Component({
   selector: 'app-result',
@@ -10,7 +15,7 @@ import {Chart} from 'node_modules/chart.js';
 })
 export class ResultComponent implements OnInit {
 
-  constructor(private _apiService: ApiService, private dataService: DataService) {
+  constructor(private _apiService: ApiService, private dataService: DataService, private db: AngularFirestore) {
   }
 
   private Realtor_API = '';  /////// This is where the REALTOR API KEY GOES //////
@@ -39,6 +44,9 @@ export class ResultComponent implements OnInit {
   chart: [];
   colors = [];
 
+  //House object for CRUD
+  house: House = new House();
+
   ngOnInit(): void {
 
     // Getting the shared data
@@ -52,7 +60,7 @@ export class ResultComponent implements OnInit {
 
     if (this.newPropID !== undefined) {
 
-      /* Realtor API displays house that was clicked on
+      /* Realtor API similar homes for sale
       * Uses the home's property ID */
       fetch('https://realtor.p.rapidapi.com/properties/list-similarities?property_id=' + this.newPropID.substring(1, this.newPropID.length)
         + '&limit=5&prop_status=for_sale', {
@@ -76,7 +84,7 @@ export class ResultComponent implements OnInit {
           });
         });
 
-      /* Realtor API similar homes for sale
+      /* Realtor API displays house that was clicked on
       * Uses the home's property ID */
       fetch('https://realtor.p.rapidapi.com/properties/v2/detail?property_id=' + this.newPropID, {
         method: 'GET',
@@ -197,6 +205,20 @@ export class ResultComponent implements OnInit {
     if (responseZip === sharZip && responseDesc !== undefined){
       this.crime_chart.push(responseDesc);
     }
+  }
+
+
+  //Methods for CRUD Operation
+  //Todo: Need to modify accordingly
+  addFavoritehouse(){
+
+    let wishing_list = ["seoul", "kwanngju"]
+
+    let doc = this.db.collection('User', ref => ref.where("email", "==", "jongkook12@naver.com"));
+    doc.snapshotChanges().subscribe((res: any) => {
+      let id = res[0].payload.doc.id;
+      this.db.collection("User").doc(id).update({FavoriteList: wishing_list})
+    });
   }
 
 

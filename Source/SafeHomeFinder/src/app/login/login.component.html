@@ -6,7 +6,6 @@
 
 <div class='searchTable'>
   <div>
-
     <!-- this header tag displays only when user is logged-in -->
     <h1 *ngIf="authService.user | async">
       Welcome User: {{ (authService.user | async)?.email }}!
@@ -19,7 +18,7 @@
       <input class="inpt" type="password" [(ngModel)]="password" placeholder="Enter password"/>
 
       <!-- user click this button to signup -->
-      <button class="row col-sm-12 btn" (click)="signup()" [disabled]="!email || !password">
+      <button class="row col-sm-12 btn"  [disabled]="!email || !password">
         Signup
       </button> <br>
       <!-- user click this button to login -->

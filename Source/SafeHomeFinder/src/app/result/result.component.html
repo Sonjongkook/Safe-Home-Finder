@@ -3,6 +3,9 @@
   <div class="column">
     <!-- Realtor Rapid API result:
     Displays selected house information -->
+    <div clas>
+      <button (click)="addFavoritehouse()"> Add it to your favorite List</button>
+    </div>
     <div class="houseInfo" *ngFor="let house of home_list">
       <span class="smallHeader">House Details</span>
       <p>Price: ${{house.price}}</p>

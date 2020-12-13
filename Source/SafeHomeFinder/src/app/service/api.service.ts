@@ -11,7 +11,7 @@ export class ApiService {
   private GreatSchoolsAPIKey = '';  ///////// This is where the GREAT SCHOOLS API KEY GOES ////////////////
 
   /* Socrata API URL specifically for KCMO */
-  // private Socrata_KCMO_URL = 'https://data.kcmo.org/resource/vsgj-uufz.json';
+  private Socrata_KCMO_URL = 'https://data.kcmo.org/resource/vsgj-uufz.json';
 
   constructor(private http: HttpClient) {
   }

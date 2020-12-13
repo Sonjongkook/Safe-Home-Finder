@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {DataService} from '../data.service';
+import {DataService} from '../service/data.service';
 
 @Component({
   selector: 'app-home',
