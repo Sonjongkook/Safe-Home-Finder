@@ -4,6 +4,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import { Observable} from 'rxjs';
 import firebase from 'firebase';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,27 +19,29 @@ export class AuthService {
     this.firebaseAuth
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
-        console.log('Success!', value);
+        window.alert('Success!' + value);
       })
       .catch(err => {
-        console.log('Something went wrong:', err.message);
+        window.alert('Something went wrong:' + err.message);
       });
   }
 
   //login and move to home
-  login(email: string, password: string, loginstatus: Observable<boolean>) {
+  login(email: string, password: string, loginstatus: boolean) {
     this.firebaseAuth
       .signInWithEmailAndPassword(email, password)
       .then(value => {
-        console.log('Nice, it worked!');
+        window.alert('Nice, it worked!');
       })
       .catch(err => {
-        console.log('Something went wrong:', err.message);
+        window.alert('Something went wrong:'+ err.message);
       });
   }
 
   //log out and move to the login page again
   logout() {
+    //If logout make email initialize
+
     this.firebaseAuth.signOut();
   }
 

@@ -6,6 +6,7 @@ import {GoogleMapComponent} from './google-map/google-map.component';
 import {DataService} from './service/data.service';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
+import {ProfileComponent} from './profile/profile.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -13,7 +14,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent},
   { path: 'result', component: ResultComponent},
-  { path: 'map', component: GoogleMapComponent}
+  { path: 'map', component: GoogleMapComponent},
+  { path: 'profile', component: ProfileComponent}
 ];
 
 @NgModule({

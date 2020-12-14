@@ -7,7 +7,6 @@ import {AngularFirestore} from '@angular/fire/firestore';
 
 
 
-
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
@@ -28,6 +27,9 @@ export class ResultComponent implements OnInit {
   private newLatitude: string;
   private newLongitude: string;
   private newPropID: string;
+  private newUrl: string;
+  //For User database Query
+  private newEmail: string;
 
   /* list for Great Schools*/
   schools_list: any;
@@ -47,9 +49,13 @@ export class ResultComponent implements OnInit {
   //House object for CRUD
   house: House = new House();
 
+
+
   ngOnInit(): void {
 
-    // Getting the shared data
+
+
+    // Getting the shared data from DataService
     this.dataService.propID.subscribe(propID => this.newPropID = propID);
     this.dataService.address.subscribe(address => this.newAddr = address);
     this.dataService.city.subscribe(city => this.newCity = city);
@@ -57,6 +63,13 @@ export class ResultComponent implements OnInit {
     this.dataService.zipcode.subscribe(zipcode => this.newZipcode = zipcode);
     this.dataService.lat.subscribe( lat => this.newLatitude = lat);
     this.dataService.long.subscribe( long => this.newLongitude = long);
+    this.dataService.url.subscribe(url => this.newUrl = url);
+
+    //Getting the shaared data from EmailService and this is the key to access FireStorage
+    if(localStorage.getItem("email")){
+      this.newEmail = localStorage.getItem("email")
+    }
+
 
     if (this.newPropID !== undefined) {
 
@@ -208,17 +221,28 @@ export class ResultComponent implements OnInit {
   }
 
 
-  //Methods for CRUD Operation
-  //Todo: Need to modify accordingly
+  //Add Favorite house to the House Collection
   addFavoritehouse(){
+    this.house.Addr = this.newAddr;
+    this.house.City = this.newCity;
+    this.house.Zipcode = this.newZipcode;
+    this.house.PropID = this.newPropID;
+    this.house.Url = this.newUrl;
+    let unsubscribe
 
-    let wishing_list = ["seoul", "kwanngju"]
+    console.log(this.newEmail)
+    //Qurey User data base with email
+    let doc = this.db.collection('User', ref => ref.where("email", "==", this.newEmail));
 
-    let doc = this.db.collection('User', ref => ref.where("email", "==", "jongkook12@naver.com"));
+
+    //Add House to the favoritelist
     doc.snapshotChanges().subscribe((res: any) => {
       let id = res[0].payload.doc.id;
-      this.db.collection("User").doc(id).update({FavoriteList: wishing_list})
+      //Create subcollection House for User collection
+      this.db.collection('User/' + id + '/House').doc(this.house.PropID).set(Object.assign({}, this.house));
+      unsubscribe();
     });
+
   }
 
 

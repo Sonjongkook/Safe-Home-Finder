@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
@@ -11,6 +10,9 @@ import { GoogleMapComponent } from './google-map/google-map.component';
 import {DataService} from './service/data.service';
 import {AuthService} from './service/auth.service';
 import { SignupComponent } from './signup/signup.component';
+import { CommonModule } from "@angular/common";
+
+
 
 import {environment} from '../environments/environment';
 
@@ -20,6 +22,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from '@angular/forms';
 import {UserService} from './service/user.service';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -31,9 +34,11 @@ import {UserService} from './service/user.service';
     LoginComponent,
     NavbarComponent,
     SignupComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     HttpClientModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),

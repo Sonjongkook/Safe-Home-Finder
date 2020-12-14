@@ -13,7 +13,10 @@ export class DataService {
   private sharedLat = new BehaviorSubject('');
   private sharedLong = new BehaviorSubject('');
   private sharedPropertyID = new BehaviorSubject('');
+  private sharedUrl = new BehaviorSubject('');
 
+
+  //For house data
   address = this.sharedAddress.asObservable();
   city = this.sharedCity.asObservable();
   state = this.sharedState.asObservable();
@@ -21,6 +24,11 @@ export class DataService {
   lat = this.sharedLat.asObservable();
   long = this.sharedLong.asObservable();
   propID = this.sharedPropertyID.asObservable();
+  url = this.sharedUrl.asObservable();
+  //For User data
+
+
+
 
   constructor() {
   }
@@ -53,4 +61,11 @@ export class DataService {
   setPropID(propID: string): void {
     this.sharedPropertyID.next(propID);
   }
+
+  setUrl(Url: string): void {
+    this.sharedUrl.next(Url);
+  }
+
+
+
 }

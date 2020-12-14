@@ -1,13 +1,25 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore,AngularFirestoreCollection} from '@angular/fire/firestore';
 import {User} from '../model/user.model';
+import {Observable} from 'rxjs';
+import {House} from '../model/house.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  usersCollection: AngularFirestoreCollection<User>;
+  users: Observable<User[]>;
+  houses: Observable<House>;
+  id: string;
+  Email: string
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(private db: AngularFirestore) {
+    this.Email = localStorage.getItem('email');
+    //Usercollection of users
+    this.users = this.db.collection('User', ref => ref.where("email", "==", this.Email)).valueChanges();
+
+
   }
 
   // this method takes an House object and
@@ -16,29 +28,35 @@ export class UserService {
     // convert object of type Employee to JSON object
     // because Firestore understand JSON
     const userObject = {...user};
-    return this.firestore.collection('User').add(userObject);
+    return this.db.collection('User').add(userObject);
   }
 
-  // this method returns list of employees document,
+  // this method returns list Users
   // fetched from Firestore database collection
   getUser() {
-    return this.firestore.collection('User').snapshotChanges();
+    return this.users;
+  }
+  // this method returns list Houses
+  // fetched from Firestore database collection
+  getHouse(){
+    this.db.collection('User', ref => ref.where("email", "==", this.Email)).snapshotChanges().subscribe((res:any) =>{
+      this.id = res[0].payload.doc.id;
+      localStorage.setItem('id', this.id);
 
+    });
+    this.houses =  this.db.collection('User/' + localStorage.getItem("id") + '/House').valueChanges();
+
+    return this.houses;
   }
 
-  // this method takes an employee object and
-  // update an object of employee to the Firestore document
+
   updateUser(user: User) {
-    // convert object of type Employee to JSON object
-    // because Firestore understand JSON
     const userObject = {...user};
-    this.firestore.doc('User/' + user.name).update(userObject);
+    this.db.doc('User/' + user.name).update(userObject);
   }
 
-  // this method takes an employee Id and
-  // delete an employee document from the Firestore collection
-  deleteHouse(UserId: string) {
-    this.firestore.doc('User/' + UserId).delete();
+  deleteUser(UserId: string) {
+    this.db.doc('User/' + UserId).delete();
   }
 
 }

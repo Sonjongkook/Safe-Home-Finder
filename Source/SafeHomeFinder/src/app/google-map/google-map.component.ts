@@ -24,6 +24,7 @@ export class GoogleMapComponent implements OnInit {
   zipcode: string;
   propId: string;
 
+
   /* Containers to store data */
   map: any;
   home_list = [];
@@ -105,6 +106,12 @@ export class GoogleMapComponent implements OnInit {
         this.dataService.setPropID(marker.getTitle());
         this.dataService.setLat(String(marker.getPosition().lat()));
         this.dataService.setLong(String(marker.getPosition().lng()));
+        //Send these to result componenet to make a House database
+        this.dataService.setAddress(house.address.line);
+        this.dataService.setCity(house.address.city);
+        console.log(house.rdc_web_url);
+        this.dataService.setZip(house.address.postal_code);
+        this.dataService.setUrl(house.rdc_web_url);
         this.router.navigate(['/result']);
       });
     }

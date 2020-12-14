@@ -1,0 +1,23 @@
+
+<!Todo: Upgrade Profile UI---->
+<div>
+  <ul *ngFor="let user of users" class="collection">
+    <h2>User Info</h2>
+    <li class="collection-item">Email: + {{user.email}}</li>
+    <li class="collection-item">Name: + {{user.name}}</li>
+  </ul>
+</div>
+
+
+<div>
+  <ul *ngFor="let house of houses" class="collection">
+    <h3>Favourite House</h3>
+    <li class="collection-item">Address: {{house.Addr}}</li>
+    <li class="collection-item">City: {{house.City}}</li>
+    <li class="collection-item">PropID: {{house.PropID}}</li>
+    <li class="collection-item">Zipcode: {{house.Zipcode}}</li>
+    <li class="collection-item">URL: {{house.Url}}</li>
+  </ul>
+</div>
+
+
