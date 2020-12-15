@@ -1,7 +1,6 @@
 import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {AuthService} from '../service/auth.service';
-import {Observable} from 'rxjs';
-
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -15,7 +14,7 @@ export class LoginComponent implements OnInit {
   password: string;
   LoginStatus: boolean;
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, public router: Router) { }
 
   login() {
     this.authService.login(this.email, this.password, this.LoginStatus);
@@ -23,10 +22,13 @@ export class LoginComponent implements OnInit {
     localStorage.setItem("email", this.email);
     //initialze email and password
     this.email = this.password = '';
+
   }
 
   logout() {
     this.authService.logout();
+    localStorage.clear();
+
   }
 
   ngOnInit(): void {

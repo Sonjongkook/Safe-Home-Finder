@@ -18,12 +18,24 @@
           <a class="nav-link" routerLink="about" routerLinkActive="active">Home</a>
         </li>
 
-        <li class="nav-item">
+        <li *ngIf="user$|async" class="nav-item">
           <a class="nav-link" routerLink="home" routerLinkActive="active">Search</a>
         </li>
 
+        <li *ngIf="user$|async" class="nav-item">
+          <a class="nav-link"  (click)="logout()" *ngIf="authService.user | async" routerLinkActive="active">Log Out</a>
+        </li>
+
         <li class="nav-item">
-          <a class="nav-link" routerLink="" routerLinkActive="active">Log Out</a>
+          <a class="nav-link" routerLink="login" routerLinkActive="active">Log in</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="about" routerLinkActive="active">About</a>
+        </li>
+
+        <li *ngIf="user$|async" class="nav-item">
+          <a class="nav-link" routerLink="" routerLinkActive="active">Profile</a>
         </li>
       </ul>
     </div>

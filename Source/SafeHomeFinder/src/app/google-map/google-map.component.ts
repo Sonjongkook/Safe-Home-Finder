@@ -4,6 +4,7 @@ import {DataService} from '../service/data.service';
 import {Router} from '@angular/router';
 
 
+
 @Component({
   selector: 'app-google-map',
   templateUrl: './google-map.component.html',
@@ -13,24 +14,17 @@ export class GoogleMapComponent implements OnInit {
 
   constructor(private _apiService: ApiService, private dataService: DataService, private router: Router) {
   }
-
-  /* Realtor API key */
-  private Realtor_API = ''; ///////// This is where the REALTOR API KEY GOES ////////////
-
   /* Variables to get the subscribed data from the dataService */
   address: string;
   city: string;
   state: string;
   zipcode: string;
   propId: string;
-
-
   /* Containers to store data */
   map: any;
-  home_list = [];
+  home_list= [];
 
   ngOnInit(): void {
-
     /* Subscribing to the dataService component */
     this.dataService.address.subscribe(address => this.address = address);
     this.dataService.city.subscribe(city => this.city = city);
@@ -39,23 +33,16 @@ export class GoogleMapComponent implements OnInit {
     this.dataService.propID.subscribe(propID => this.propId = propID);
 
     /* Realtor Rapid API call - Displays 10 of the newest listings */
-    fetch('https://realtor.p.rapidapi.com/properties/v2/list-for-sale?city=Kansas%20City&limit=15&offset=0&state_code=MO&sort=newest&is_pending=false&is_new_plan=false', {
-      method: 'GET',
-      headers: {
-        'x-rapidapi-key': this.Realtor_API,
-        'x-rapidapi-host': 'realtor.p.rapidapi.com'
-      }
-    })
-      .then(response => {
-        return response.json().then((data) => {
-          this.home_list = data.properties;
-          return this.home_list;
-        }).then((list) => {
-          this.initMap(list);
-        }).catch(err => {
-          console.error(err);
-        });
+    this._apiService.getHomes(this.city, this.state).then(response =>{
+      return response.json().then((data) => {
+        this.home_list = data.properties;
+        return this.home_list;
+      }).then((list) => {
+        this.initMap(list);
+      }).catch(e => {
+        console.error(e);
       });
+    });
   }
 
   /* Method that initializes Google Map */
@@ -66,7 +53,6 @@ export class GoogleMapComponent implements OnInit {
       zoom: 11,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-
     this.map = new google.maps.Map(document.getElementById('map'), mapOptions
     );
 
@@ -92,7 +78,6 @@ export class GoogleMapComponent implements OnInit {
       marker.addListener('mouseover', () => {
         infowindow.open(this.map, marker);
       });
-
       marker.addListener('mouseout', () => {
         infowindow.close();
       });

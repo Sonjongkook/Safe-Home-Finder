@@ -9,17 +9,16 @@ import {House} from '../model/house.model';
 })
 export class UserService {
   usersCollection: AngularFirestoreCollection<User>;
-  users: Observable<User[]>;
-  houses: Observable<House>;
+  users: Observable<any[]>;
+  houses: Observable<any[]>;
   id: string;
+  final_id: string;
   Email: string;
 
   constructor(private db: AngularFirestore) {
     this.Email = localStorage.getItem('email');
     // User collection of users
     this.users = this.db.collection('User', ref => ref.where("email", "==", this.Email)).valueChanges();
-
-
   }
 
   // this method takes an House object and
@@ -38,15 +37,20 @@ export class UserService {
   }
   // this method returns list Houses
   // fetched from Firestore database collection
+  // Todo: Update this to make it synchronized
   getHouse(){
+    console.log(this.Email);
     this.db.collection('User', ref => ref.where("email", "==", this.Email)).snapshotChanges().subscribe((res:any) =>{
+      console.log(res[0].payload.doc);
       this.id = res[0].payload.doc.id;
       localStorage.setItem('id', this.id);
+      return;
+    })
 
-    });
-    this.houses =  this.db.collection('User/' + localStorage.getItem("id") + '/House').valueChanges();
-
+    this.houses =  this.db.collection('User/' + localStorage.getItem('id') + '/House').valueChanges();
+    console.log(this.houses.forEach(d => console.log(d)));
     return this.houses;
+
   }
 
 

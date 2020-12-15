@@ -16,9 +16,6 @@ export class ResultComponent implements OnInit {
 
   constructor(private _apiService: ApiService, private dataService: DataService, private db: AngularFirestore) {
   }
-
-  private Realtor_API = '';  /////// This is where the REALTOR API KEY GOES //////
-
   /* Variables to get the subscribed data from the dataService */
   private newAddr: string;
   private newCity: string;
@@ -31,18 +28,14 @@ export class ResultComponent implements OnInit {
 
   /* For User database Query */
   private newEmail: string;
-
   /* list for Great Schools*/
   schools_list: any;
-
   /* list for Realtor houses */
   home_list = [];
   nearby_houses = [];
-
   /* Variables for Socrata data*/
   crime_chart = [];
   crime_count = [];
-
   /* Variables for Socrata charts */
   chart: [];
   colors = [];
@@ -93,14 +86,7 @@ export class ResultComponent implements OnInit {
     if (this.newPropID !== undefined) {
       /* Realtor API similar homes for sale
       * Uses the home's property ID */
-      fetch('https://realtor.p.rapidapi.com/properties/list-similarities?property_id=' + this.newPropID
-        + '&limit=5&prop_status=for_sale', {
-        method: 'GET',
-        headers: {
-          'x-rapidapi-key': this.Realtor_API,
-          'x-rapidapi-host': 'realtor.p.rapidapi.com'
-        }
-      })
+      this._apiService.getSimilarHomes(this.newPropID)
         .then(response => {
           return response.json().then((data) => {
             if (data.results.similar_homes.count === null) {
@@ -117,13 +103,7 @@ export class ResultComponent implements OnInit {
 
       /* Realtor API displays house that was clicked on
       * Uses the home's property ID */
-      fetch('https://realtor.p.rapidapi.com/properties/v2/detail?property_id=' + this.newPropID, {
-        method: 'GET',
-        headers: {
-          'x-rapidapi-key': this.Realtor_API,
-          'x-rapidapi-host': 'realtor.p.rapidapi.com'
-        }
-      })
+      this._apiService.getHomeDetail(this.newPropID)
         .then(response => {
           return response.json().then((data) => {
             this.home_list = data.properties;
@@ -258,8 +238,6 @@ export class ResultComponent implements OnInit {
     console.log(this.newEmail);
     // Query User data base with email
     const doc = this.db.collection('User', ref => ref.where('email', '==', this.newEmail));
-
-
     // Add House to the favoritelist
     doc.snapshotChanges().subscribe((res: any) => {
       const id = res[0].payload.doc.id;
