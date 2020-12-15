@@ -24,6 +24,7 @@ import {FormsModule} from '@angular/forms';
 import {UserService} from './service/user.service';
 import { ProfileComponent } from './profile/profile.component';
 import { AboutComponent } from './about/about.component';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { AboutComponent } from './about/about.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    FormsModule
+    FormsModule,
+    IvyCarouselModule,
   ],
   providers: [DataService, AuthService, UserService],
   bootstrap: [AppComponent]

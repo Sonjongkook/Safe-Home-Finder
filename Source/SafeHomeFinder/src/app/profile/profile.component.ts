@@ -19,13 +19,13 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userService.getUser().subscribe(users =>{
+    this.userService.getUser().subscribe(users => {
 
       this.users = users;
       // console.log(this.users);
     });
 
-    this.userService.getHouse().subscribe(houses =>{
+    this.userService.getHouse().subscribe(houses => {
       this.houses = houses;
       // console.log(this.houses);
 

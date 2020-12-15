@@ -100,10 +100,10 @@ export class GoogleMapComponent implements OnInit {
       // When click the marker redirect to the result page.
       // Also assigns required property id, lat, and long to use for following page.
       marker.addListener('click', () => {
-        this.dataService.setPropID(marker.getTitle());
+        this.dataService.setPropID(marker.getTitle().substring(1, marker.getTitle().length));
         this.dataService.setLat(String(marker.getPosition().lat()));
         this.dataService.setLong(String(marker.getPosition().lng()));
-        //Send these to result componenet to make a House database
+        // Send these to result component to make a House database.
         this.dataService.setAddress(house.address.line);
         this.dataService.setCity(house.address.city);
         console.log(house.rdc_web_url);

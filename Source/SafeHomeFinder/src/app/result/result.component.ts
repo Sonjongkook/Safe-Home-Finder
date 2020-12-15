@@ -50,7 +50,26 @@ export class ResultComponent implements OnInit {
   // House object for CRUD
   house: House = new House();
 
+  /* Function that refreshes results page with new data */
+  refresh(newVals: any): void {
+    this.dataService.setPropID(newVals.property_id);
+    this.dataService.setAddress(newVals.location.address.line);
+    this.dataService.setCity(newVals.location.address.city);
+    this.dataService.setZip(newVals.location.address.postal_code);
+    this.dataService.setLat(newVals.location.address.coordinate.lat);
+    this.dataService.setLong(newVals.location.address.coordinate.lon);
+    this.ngOnInit();
+  }
+
   ngOnInit(): void {
+
+    console.log('this is the property id: ' + this.newPropID);
+    console.log('this is the address: ' + this.newAddr);
+    console.log('this is the city: ' + this.newCity);
+    console.log('this is the state: ' + this.newState);
+    console.log('this is the zip code: ' + this.newZipcode);
+    console.log('this is the lattitude: ' + this.newLatitude);
+    console.log('this is the longitude: ' + this.newLongitude);
 
     // Getting the shared data from DataService
     this.dataService.propID.subscribe(propID => this.newPropID = propID);
@@ -67,17 +86,18 @@ export class ResultComponent implements OnInit {
       this.newEmail = localStorage.getItem('email');
     }
 
-    this.newPropID = 'M7744104915';
+    // this.newPropID = 'M7744104915';
+    // this.newZipcode = '';
+    // this.newLatitude = '';
 
     if (this.newPropID !== undefined) {
-
       /* Realtor API similar homes for sale
       * Uses the home's property ID */
-      fetch('https://realtor.p.rapidapi.com/properties/list-similarities?property_id=' + this.newPropID.substring(1, this.newPropID.length)
+      fetch('https://realtor.p.rapidapi.com/properties/list-similarities?property_id=' + this.newPropID
         + '&limit=5&prop_status=for_sale', {
         method: 'GET',
         headers: {
-          'x-rapidapi-key': '',
+          'x-rapidapi-key': this.Realtor_API,
           'x-rapidapi-host': 'realtor.p.rapidapi.com'
         }
       })
@@ -112,11 +132,9 @@ export class ResultComponent implements OnInit {
           });
         });
     }
-
     else{
       console.log('Property ID is ' + this.newPropID);
     }
-
 
     if (this.newState !== undefined && this.newLatitude !== undefined && this.newLongitude !== undefined){
       /* Great Schools API call
@@ -127,7 +145,6 @@ export class ResultComponent implements OnInit {
     else{
       console.log('State, Latitude, and Longitude is ' + this.newState + ' ' + this.newLatitude + ' ' + this.newLongitude);
     }
-
 
     /* Socrata API call and Creation of Chart
     * Uses the shared zipcode */
@@ -165,7 +182,8 @@ export class ResultComponent implements OnInit {
               options: {
                 legend: {
                   display: false},
-                title: { display: true, fontColor: '#ffffff', fontSize: '15', text: 'Number of Reported Crimes (2020) for ' + this.newZipcode},
+                title: { display: true, fontColor: '#ffffff', fontSize: '15',
+                  text: 'Number of Reported Crimes (2020) for ' + this.newZipcode},
                 responsive: true,
                 maintainAspectRatio: true,
                 scales: {

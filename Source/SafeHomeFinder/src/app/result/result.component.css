@@ -4,6 +4,7 @@
   width:100%;
   margin:auto;
   padding: 25px 25px 25px 25px;
+  text-align: center;
 }
 
 p {
@@ -91,6 +92,18 @@ p {
 
 .resultName {
   font-size: 20px;
+  color: #ba82a8;
+  text-align: center;
+}
+
+.resultName2 {
+  font-size: 18px;
+  color: #ba82a8;
+  text-align: center;
+}
+
+.resultName3 {
+  font-size: 25px;
   color: #ba82a8;
   text-align: center;
 }

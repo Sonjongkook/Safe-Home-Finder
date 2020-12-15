@@ -7,7 +7,45 @@
       <button (click)="addFavoritehouse()"> Add it to your favorite List</button>
     </div>
     <div class="houseInfo" *ngFor="let house of home_list">
+
+      <carousel height="400" cellsToShow="2" loop="true">
+        <div class="carousel-cell">
+          <img [src]="house.photos[0].href">
+        </div>
+        <div class="carousel-cell">
+          <img [src]="house.photos[1].href">
+        </div>
+        <div class="carousel-cell">
+          <img [src]="house.photos[2].href">
+        </div>
+        <div class="carousel-cell">
+          <img [src]="house.photos[3].href">
+        </div>
+        <div class="carousel-cell">
+          <img [src]="house.photos[4].href">
+        </div>
+        <div class="carousel-cell">
+          <img [src]="house.photos[5].href">
+        </div>
+        <div class="carousel-cell">
+          <img [src]="house.photos[6].href">
+        </div>
+        <div class="carousel-cell">
+          <img [src]="house.photos[7].href">
+        </div>
+        <div class="carousel-cell">
+          <img [src]="house.photos[8].href">
+        </div>
+        <div class="carousel-cell">
+          <img [src]="house.photos[9].href">
+        </div>
+        <div class="carousel-cell">
+          <img [src]="house.photos[10].href">
+        </div>
+      </carousel>
+
       <span class="smallHeader">House Details</span>
+      <p class="resultName3">{{house.address.line}}</p>
       <p class="houseDetail"><b>Price:</b> ${{house.price}}</p>
       <p class="houseDetail"><b>Date listed: </b>{{house.list_date}}</p>
       <p class="houseDetail"><b>Type of property: </b>{{house.style}}</p>
@@ -36,12 +74,13 @@
       <span class="resultsHeader">Similar Homes For Sale:</span>
       <div class="similarImagesContainer" *ngFor="let homes of nearby_houses" >
         <img class="similarImages" align="left" height="175px" width="175px" [src]="homes.additional_info.photo_url">
-        <p class="resultName">{{homes.location.address.line}}</p>
-        <p class="resultName">{{homes.location.address.city}}, {{homes.location.address.state_code}}.
+        <p class="resultName2">{{homes.location.address.line}}</p>
+        <p class="resultName2">{{homes.location.address.city}}, {{homes.location.address.state_code}}.
           {{homes.location.address.postal_code}}</p>
         <p class="resultName"><b>${{homes.list_price}}</b></p>
         <p class="resultInfo"><b>Number of bedrooms: </b>{{homes.description.beds}}</p>
         <p class="resultInfo"><b>Number of baths:</b> {{homes.description.baths}}</p>
+        <button (click)="refresh(homes)">Go here</button>
       </div>
     </div>
 
