@@ -5,25 +5,20 @@
   margin:auto;
 }
 
-/* Header CSS */
-.resultsHeader {
-  text-align: center;
-  font-family: "Arial Narrow";
-  color: white;
-  font-weight: bolder;
-  font-size: 25px;
-}
-
 #Title {
+  height: 75px;
+  font-weight: bold;
+  font-family: "Arial Rounded MT Bold", serif;
+  font-size: 50px;
+  background: #343A40;
+  color: white;
   text-align: center;
-  font-size: 35px;
-  font-family: "Arial Narrow";
-  color:white;
 }
 
 /* Google Map */
 #map{
   height: 1000px !important;
+  border: 1px solid;
 }
 
 html, body {

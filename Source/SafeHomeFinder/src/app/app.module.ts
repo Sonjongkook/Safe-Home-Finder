@@ -10,19 +10,20 @@ import { GoogleMapComponent } from './google-map/google-map.component';
 import {DataService} from './service/data.service';
 import {AuthService} from './service/auth.service';
 import { SignupComponent } from './signup/signup.component';
-import { CommonModule } from "@angular/common";
+import { CommonModule } from '@angular/common';
 
 
 
 import {environment} from '../environments/environment';
 
-//Fire base module
+// Fire base module
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from '@angular/forms';
 import {UserService} from './service/user.service';
 import { ProfileComponent } from './profile/profile.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { ProfileComponent } from './profile/profile.component';
     NavbarComponent,
     SignupComponent,
     ProfileComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

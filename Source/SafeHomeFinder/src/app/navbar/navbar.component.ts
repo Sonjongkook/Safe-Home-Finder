@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent {
   navbarOpen = false;
 
-  toggleNavbar() {
+  toggleNavbar(): void {
     this.navbarOpen = !this.navbarOpen;
   }
 

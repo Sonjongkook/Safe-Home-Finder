@@ -7,15 +7,17 @@ import {DataService} from './service/data.service';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
 import {ProfileComponent} from './profile/profile.component';
+import {AboutComponent} from './about/about.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/about', pathMatch: 'full' },
   { path: 'signup', component: SignupComponent},
   { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent},
   { path: 'result', component: ResultComponent},
   { path: 'map', component: GoogleMapComponent},
-  { path: 'profile', component: ProfileComponent}
+  { path: 'profile', component: ProfileComponent},
+  { path: 'about', component: AboutComponent}
 ];
 
 @NgModule({

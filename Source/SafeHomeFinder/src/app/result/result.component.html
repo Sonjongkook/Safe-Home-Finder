@@ -3,23 +3,24 @@
   <div class="column">
     <!-- Realtor Rapid API result:
     Displays selected house information -->
-    <div clas>
+    <div>
       <button (click)="addFavoritehouse()"> Add it to your favorite List</button>
     </div>
     <div class="houseInfo" *ngFor="let house of home_list">
       <span class="smallHeader">House Details</span>
-      <p>Price: ${{house.price}}</p>
-      <p>Date listed: {{house.list_date}}</p>
-      <p>Type of property: {{house.style}}</p>
-      <p>Year Built: {{house.year_built}}</p>
+      <p class="houseDetail"><b>Price:</b> ${{house.price}}</p>
+      <p class="houseDetail"><b>Date listed: </b>{{house.list_date}}</p>
+      <p class="houseDetail"><b>Type of property: </b>{{house.style}}</p>
+      <p class="houseDetail"><b>Year Built: </b>{{house.year_built}}</p>
       <span class="smallHeader">Features</span>
-      <p>Number of bedrooms: {{house.beds}}</p>
-      <p>Number of bathrooms: {{house.baths}}</p>
-      <p>Number of garages: {{house.garage}}</p>
+      <p class="houseDetail"><b>Number of bedrooms: </b>{{house.beds}}</p>
+      <p class="houseDetail"><b>Number of bathrooms: </b>{{house.baths}}</p>
+      <p class="houseDetail"><b>Number of garages: </b>{{house.garage}}</p>
       <span class="smallHeader">Description</span>
       <p>{{house.description}}</p>
     </div>
   </div>
+
   <div class="crimeReport">
     <!-- Socrata ODN API results -->
     <div class="container">
@@ -34,13 +35,13 @@
       Displays similar houses for sale  -->
       <span class="resultsHeader">Similar Homes For Sale:</span>
       <div class="similarImagesContainer" *ngFor="let homes of nearby_houses" >
-        <img class="similarImages" align="left" height="165px" width="165px" [src]="homes.additional_info.photo_url">
-        <p>Price: ${{homes.list_price}}</p>
-        <p>Address: {{homes.location.address.line}}  {{homes.location.address.city}}, {{homes.location.address.state_code}}.
+        <img class="similarImages" align="left" height="175px" width="175px" [src]="homes.additional_info.photo_url">
+        <p class="resultName">{{homes.location.address.line}}</p>
+        <p class="resultName">{{homes.location.address.city}}, {{homes.location.address.state_code}}.
           {{homes.location.address.postal_code}}</p>
-        <p>Total Sq Ft: {{homes.status.sqft}}</p>
-        <p>Number of bedrooms: {{homes.description.beds}}</p>
-        <p>Number of baths: {{homes.description.baths}}</p>
+        <p class="resultName"><b>${{homes.list_price}}</b></p>
+        <p class="resultInfo"><b>Number of bedrooms: </b>{{homes.description.beds}}</p>
+        <p class="resultInfo"><b>Number of baths:</b> {{homes.description.baths}}</p>
       </div>
     </div>
 
@@ -48,12 +49,13 @@
       <!-- Great Schools API results -->
       <span class="resultsHeader">Nearby Schools:</span>
       <div *ngFor="let school of schools_list" class="similarImagesContainer">
-        <p>{{school.name}} - {{school.gradeRange}} ({{school.type}})</p>
-        <p>{{school.address}}</p>
-        <p>Phone number: {{school.phone}}</p>
-        <p>Distance from House: {{school.distance}}</p>
-        <p>Parent rating: {{school.parentRating}}/10</p>
-        <p>School website: <a target="_blank" href="http://{{school.website}}" rel="noopener">{{school.website}}</a></p>
+        <p class="resultName">{{school.name}}</p>
+        <p class="resultInfo"><b>{{school.type}} - {{school.gradeRange}}</b></p>
+        <p class="resultInfo">{{school.address}}</p>
+        <p class="resultInfo"><b>Phone number:</b> {{school.phone}}</p>
+        <p class="resultInfo"><b>Distance from House:</b>  {{school.distance}}</p>
+        <p class="resultInfo"><b>Parent rating:</b>  {{school.parentRating}}/10</p>
+        <p class="resultInfo"><a target="_blank" href="{{school.website}}" rel="noopener">School Site</a></p>
       </div>
     </div>
   </div>

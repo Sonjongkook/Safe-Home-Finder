@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore,AngularFirestoreCollection} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {User} from '../model/user.model';
 import {Observable} from 'rxjs';
 import {House} from '../model/house.model';
@@ -12,11 +12,11 @@ export class UserService {
   users: Observable<User[]>;
   houses: Observable<House>;
   id: string;
-  Email: string
+  Email: string;
 
   constructor(private db: AngularFirestore) {
     this.Email = localStorage.getItem('email');
-    //Usercollection of users
+    // User collection of users
     this.users = this.db.collection('User', ref => ref.where("email", "==", this.Email)).valueChanges();
 
 

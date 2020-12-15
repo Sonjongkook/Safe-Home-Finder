@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   }
 
   /* Takes user input from Search page and allows access to other components */
-  getSearchResults(){
+  getSearchResults(): void {
     if (this.addr.nativeElement.value !== null){
       this.dataService.setAddress(this.addr.nativeElement.value);
     }

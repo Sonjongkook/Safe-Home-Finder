@@ -8,17 +8,19 @@
 }
 
 #Title {
+  height: 75px;
+  font-weight: bold;
+  font-family: "Arial Rounded MT Bold", serif;
+  font-size: 50px;
+  background: #343A40;
+  color: white;
   text-align: center;
-  font-size: 35px;
-  font-family: "Arial Narrow";
-  color:white;
 }
 
 .resultsHeader {
   font-size: 20px;
   font-weight: bold;
   color: #ba82a8;
-  font-family: "Arial Narrow";
 }
 
 .searchTable{
@@ -26,7 +28,6 @@
   border-style: none;
   background-color:#ba82a8;
   font-size: 20px;
-  font-family: "Arial Narrow";
 }
 
 .btn{
@@ -57,3 +58,4 @@
 agm-map {
   height: 500px;
 }
+

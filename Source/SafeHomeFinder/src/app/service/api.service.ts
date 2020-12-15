@@ -7,7 +7,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class ApiService {
 
-  /* Great Schools API URL specifically for KCMO */
+  /* Great Schools API Key */
   private GreatSchoolsAPIKey = '';  ///////// This is where the GREAT SCHOOLS API KEY GOES ////////////////
 
   /* Socrata API URL specifically for KCMO */

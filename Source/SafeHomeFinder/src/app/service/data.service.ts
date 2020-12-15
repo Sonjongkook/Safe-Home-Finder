@@ -16,7 +16,7 @@ export class DataService {
   private sharedUrl = new BehaviorSubject('');
 
 
-  //For house data
+  // For house data
   address = this.sharedAddress.asObservable();
   city = this.sharedCity.asObservable();
   state = this.sharedState.asObservable();
@@ -25,7 +25,7 @@ export class DataService {
   long = this.sharedLong.asObservable();
   propID = this.sharedPropertyID.asObservable();
   url = this.sharedUrl.asObservable();
-  //For User data
+  // For User data
 
 
 

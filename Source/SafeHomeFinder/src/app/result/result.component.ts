@@ -28,7 +28,8 @@ export class ResultComponent implements OnInit {
   private newLongitude: string;
   private newPropID: string;
   private newUrl: string;
-  //For User database Query
+
+  /* For User database Query */
   private newEmail: string;
 
   /* list for Great Schools*/
@@ -46,14 +47,10 @@ export class ResultComponent implements OnInit {
   chart: [];
   colors = [];
 
-  //House object for CRUD
+  // House object for CRUD
   house: House = new House();
 
-
-
   ngOnInit(): void {
-
-
 
     // Getting the shared data from DataService
     this.dataService.propID.subscribe(propID => this.newPropID = propID);
@@ -65,11 +62,12 @@ export class ResultComponent implements OnInit {
     this.dataService.long.subscribe( long => this.newLongitude = long);
     this.dataService.url.subscribe(url => this.newUrl = url);
 
-    //Getting the shaared data from EmailService and this is the key to access FireStorage
-    if(localStorage.getItem("email")){
-      this.newEmail = localStorage.getItem("email")
+    // Getting the shared data from EmailService and this is the key to access FireStorage
+    if (localStorage.getItem('email')){
+      this.newEmail = localStorage.getItem('email');
     }
 
+    this.newPropID = 'M7744104915';
 
     if (this.newPropID !== undefined) {
 
@@ -79,7 +77,7 @@ export class ResultComponent implements OnInit {
         + '&limit=5&prop_status=for_sale', {
         method: 'GET',
         headers: {
-          'x-rapidapi-key': this.Realtor_API,
+          'x-rapidapi-key': '',
           'x-rapidapi-host': 'realtor.p.rapidapi.com'
         }
       })
@@ -160,10 +158,14 @@ export class ResultComponent implements OnInit {
                     data: this.crime_count, // Insert the associated data
                     backgroundColor: this.colors,
                     borderColor: this.colors,
-                    borderWidth: 1
+                    borderWidth: 1,
+                    fontColor: '#ffffff',
                   }]
               },
               options: {
+                legend: {
+                  display: false},
+                title: { display: true, fontColor: '#ffffff', fontSize: '15', text: 'Number of Reported Crimes (2020) for ' + this.newZipcode},
                 responsive: true,
                 maintainAspectRatio: true,
                 scales: {
@@ -171,6 +173,12 @@ export class ResultComponent implements OnInit {
                     ticks: {
                       beginAtZero: true,
                       stepSize: 1,
+                      fontColor: '#ffffff'
+                    }
+                  }],
+                  xAxes: [{
+                    ticks: {
+                      fontColor: '#ffffff'
                     }
                   }]
                 }
@@ -201,7 +209,7 @@ export class ResultComponent implements OnInit {
 
   /* Helper function that randomizes colors for bars */
   randomizeColors(): void{
-    const visibility = 0.2;
+    const visibility = 1;
     const maxValue = 255;
     const minValue = 1;
     this.crime_count.forEach(() => {
@@ -220,30 +228,27 @@ export class ResultComponent implements OnInit {
     }
   }
 
-
-  //Add Favorite house to the House Collection
-  addFavoritehouse(){
+  /* Function that adds Favorite house to the House Collection */
+  addFavoritehouse(): void {
     this.house.Addr = this.newAddr;
     this.house.City = this.newCity;
     this.house.Zipcode = this.newZipcode;
     this.house.PropID = this.newPropID;
     this.house.Url = this.newUrl;
-    let unsubscribe
+    let unsubscribe;
 
-    console.log(this.newEmail)
-    //Qurey User data base with email
-    let doc = this.db.collection('User', ref => ref.where("email", "==", this.newEmail));
+    console.log(this.newEmail);
+    // Query User data base with email
+    const doc = this.db.collection('User', ref => ref.where('email', '==', this.newEmail));
 
 
-    //Add House to the favoritelist
+    // Add House to the favoritelist
     doc.snapshotChanges().subscribe((res: any) => {
-      let id = res[0].payload.doc.id;
-      //Create subcollection House for User collection
+      const id = res[0].payload.doc.id;
+      // Create subcollection House for User collection
       this.db.collection('User/' + id + '/House').doc(this.house.PropID).set(Object.assign({}, this.house));
       unsubscribe();
     });
 
   }
-
-
 }

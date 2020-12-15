@@ -7,10 +7,10 @@ export const environment = {
   firebaseConfig: {
     apiKey: 'AIzaSyCKAgIKofveuwkVAzggpI55qLtGqBidlDk',
     authDomain: 'safe-home-finder.firebaseapp.com',
-    projectId: "safe-home-finder",
-    storageBucket: "safe-home-finder.appspot.com",
-    messagingSenderId: "237932500877",
-    appId: "1:237932500877:web:026ad988de63ea0d3e0fc4"
+    projectId: 'safe-home-finder',
+    storageBucket: 'safe-home-finder.appspot.com',
+    messagingSenderId: '237932500877',
+    appId: '1:237932500877:web:026ad988de63ea0d3e0fc4'
   }
 };
 

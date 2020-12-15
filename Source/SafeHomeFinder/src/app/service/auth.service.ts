@@ -14,8 +14,8 @@ export class AuthService {
     this.user = firebaseAuth.authState;
   }
 
-  //Sign up functionality
-  signup(email: string, password: string) {
+  // Sign up functionality
+  signup(email: string, password: string): void {
     this.firebaseAuth
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
@@ -26,21 +26,21 @@ export class AuthService {
       });
   }
 
-  //login and move to home
-  login(email: string, password: string, loginstatus: boolean) {
+  // login and move to home
+  login(email: string, password: string, loginstatus: boolean): void {
     this.firebaseAuth
       .signInWithEmailAndPassword(email, password)
       .then(value => {
         window.alert('Nice, it worked!');
       })
       .catch(err => {
-        window.alert('Something went wrong:'+ err.message);
+        window.alert('Something went wrong:' + err.message);
       });
   }
 
-  //log out and move to the login page again
-  logout() {
-    //If logout make email initialize
+  // log out and move to the login page again
+  logout(): void {
+    // If logout make email initialize
 
     this.firebaseAuth.signOut();
   }
