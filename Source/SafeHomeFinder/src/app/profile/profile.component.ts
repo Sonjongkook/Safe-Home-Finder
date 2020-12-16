@@ -4,15 +4,18 @@ import {UserService} from '../service/user.service';
 import {House} from '../model/house.model';
 import {User} from '../model/user.model';
 import {interval, Subscription} from 'rxjs';
+import {Router} from '@angular/router';
+import {DOCUMENT} from '@angular/common'
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  document: Document
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private db: AngularFirestore, private userService: UserService) {}
+  constructor(private db: AngularFirestore, private router: Router, private userService: UserService) {}
 
   users: any[];
   houses: House[];
@@ -30,4 +33,10 @@ export class ProfileComponent implements OnInit {
         });
       });
   }
+
+  viewSite(favHouse): void {
+    this.document.location.href = favHouse.rdc_web_url;
+}
+
+
 }

@@ -166,7 +166,7 @@
       <div class="col-md-6">
         <ul *ngFor="let house of houses" class="collection">
           <h3>Favorite House</h3>
-          <button routerLink="/result" (click)="viwSite(house)" class="btn" type="button">View Results Page</button>
+          <button (click)="viewSite(house)" class="btn" type="button">View Results Page</button>
           <li class="collection-item">Address: {{house.Addr}}</li>
           <li class="collection-item">City: {{house.City}}</li>
           <li class="collection-item">PropID: {{house.PropID}}</li>
