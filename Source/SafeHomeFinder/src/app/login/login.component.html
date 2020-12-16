@@ -17,20 +17,17 @@
       <input class="inpt" type="text" [(ngModel)]="email" placeholder="Enter email"/> <br>
       <input class="inpt" type="password" [(ngModel)]="password" placeholder="Enter password"/>
 
-      <!-- user click this button to signup -->
-      <button class="row col-sm-12 btn"  [disabled]="!email || !password">
-        Signup
-      </button> <br>
+
       <!-- user click this button to login -->
       <button class="row col-sm-12 btn" (click)="login()" [disabled]="!email || !password">
         Login
       </button>
+      <!-- user click this button to signup -->
+      <button (click)="moveToSignup()" class="row col-sm-12 btn">
+        Signup
+      </button> <br>
     </div>
 
-  <!-- Todo: make this logout status work..-->
-  <!--  <h1 *ngIf="!LoginStatus">-->
-  <!--    Please Try again email or password is wrong-->
-  <!--  </h1>-->
 
     <!-- user click this button to logout -->
     <!-- this button displays only when user is logged-in -->

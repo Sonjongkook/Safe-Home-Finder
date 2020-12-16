@@ -1,4 +1,4 @@
-import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../service/auth.service';
 import {Router} from '@angular/router';
 
@@ -16,19 +16,19 @@ export class LoginComponent implements OnInit {
 
   constructor(public authService: AuthService, public router: Router) { }
 
-  login() {
-    this.authService.login(this.email, this.password, this.LoginStatus);
-    //Save this email value to localstorage
-    localStorage.setItem("email", this.email);
+  async login() {
+    await this.authService.login(this.email, this.password, this.LoginStatus);
     //initialze email and password
     this.email = this.password = '';
-
   }
 
-  logout() {
-    this.authService.logout();
-    localStorage.clear();
+  async logout() {
+    await this.authService.logout();
+    await localStorage.clear();
+  }
 
+  moveToSignup(){
+    this.router.navigate(["signup"])
   }
 
   ngOnInit(): void {

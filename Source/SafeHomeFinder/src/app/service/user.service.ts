@@ -16,9 +16,7 @@ export class UserService {
   Email: string;
 
   constructor(private db: AngularFirestore) {
-    this.Email = localStorage.getItem('email');
     // User collection of users
-    this.users = this.db.collection('User', ref => ref.where("email", "==", this.Email)).valueChanges();
   }
 
   // this method takes an House object and
@@ -33,7 +31,8 @@ export class UserService {
   // this method returns list Users
   // fetched from Firestore database collection
   getUser() {
-    return this.users;
+    this.Email = localStorage.getItem("email")
+    return this.db.collection('User', ref => ref.where("email", "==", this.Email)).valueChanges();;
   }
   // this method returns list Houses
   // fetched from Firestore database collection

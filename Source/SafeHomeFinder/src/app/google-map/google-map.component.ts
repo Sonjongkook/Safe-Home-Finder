@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class GoogleMapComponent implements OnInit {
 
-  constructor(private _apiService: ApiService, private dataService: DataService, private router: Router) {
+  constructor(private apiService: ApiService, private dataService: DataService, private router: Router) {
   }
 
   /* Variables to get the subscribed data from the dataService */
@@ -19,6 +19,7 @@ export class GoogleMapComponent implements OnInit {
   state: string;
   zipcode: string;
   propId: string;
+  type: string;
 
   /* Containers to store data */
   map: any;
@@ -34,9 +35,11 @@ export class GoogleMapComponent implements OnInit {
     this.dataService.state.subscribe(state => this.state = state);
     this.dataService.zipcode.subscribe(zipcode => this.zipcode = zipcode);
     this.dataService.propID.subscribe(propID => this.propId = propID);
+    this.dataService.type.subscribe(Type => this.type = Type);
+    console.log(this.type);
 
     /* Realtor pulls 10 of the newest home listings */
-    this._apiService.getHomes(this.city, this.state).then(response => {
+    this.apiService.getHomes(this.city, this.state, this.type).then(response => {
       return response.json().then((data) => {
         this.home_list = data.properties;
         return this.home_list;
@@ -47,7 +50,6 @@ export class GoogleMapComponent implements OnInit {
       });
     });
   }
-
   /* Method that initializes Google Map
   * Maps all Realtor data onto Google Maps  */
   initMap(homelist): void {
@@ -95,7 +97,6 @@ export class GoogleMapComponent implements OnInit {
         // Send these to result component to make a House database.
         this.dataService.setAddress(house.address.line);
         this.dataService.setCity(house.address.city);
-        console.log(house.rdc_web_url);
         this.dataService.setZip(house.address.postal_code);
         this.dataService.setUrl(house.rdc_web_url);
         this.router.navigate(['/result']);

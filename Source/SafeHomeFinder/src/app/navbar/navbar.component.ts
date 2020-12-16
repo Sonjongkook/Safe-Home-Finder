@@ -19,7 +19,6 @@ export class NavbarComponent{
   logout(){
     this.authService.logout();
     window.alert("You are logged out")
-    localStorage.clear();
   }
 
   toggleNavbar(): void {

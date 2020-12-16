@@ -14,6 +14,7 @@ export class DataService {
   private sharedLong = new BehaviorSubject('');
   private sharedPropertyID = new BehaviorSubject('');
   private sharedUrl = new BehaviorSubject('');
+  private sharedType = new BehaviorSubject('')
 
 
   // For house data
@@ -25,6 +26,7 @@ export class DataService {
   long = this.sharedLong.asObservable();
   propID = this.sharedPropertyID.asObservable();
   url = this.sharedUrl.asObservable();
+  type = this.sharedType.asObservable();
   // For User data
 
 
@@ -64,6 +66,10 @@ export class DataService {
 
   setUrl(Url: string): void {
     this.sharedUrl.next(Url);
+  }
+
+  setType(type: string): void{
+    this.sharedType.next(type);
   }
 
 

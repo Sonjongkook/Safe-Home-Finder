@@ -12,11 +12,17 @@ export class HomeComponent implements OnInit {
   @ViewChild('cityInput') city: ElementRef;
   @ViewChild('stateInput') state: ElementRef;
   @ViewChild('zipcodeInput') zipcode: ElementRef;
+  SelectedType: string;
 
   constructor(private dataService: DataService) {
   }
 
   ngOnInit(): void {
+  }
+
+  radioChanged(event): void{
+    this.SelectedType = event.target.value;
+
   }
 
   /* Takes user input from Search page and allows access to other components */
@@ -33,5 +39,6 @@ export class HomeComponent implements OnInit {
     if (this.zipcode.nativeElement.value !== null){
       this.dataService.setZip(this.zipcode.nativeElement.value);
     }
+    this.dataService.setType(this.SelectedType);
   }
 }

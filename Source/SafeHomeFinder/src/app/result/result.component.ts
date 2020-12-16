@@ -4,6 +4,7 @@ import {DataService} from '../service/data.service';
 import {Chart} from 'node_modules/chart.js';
 import {House} from '../model/house.model';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-result',
@@ -12,7 +13,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 })
 export class ResultComponent implements OnInit {
 
-  constructor(private _apiService: ApiService, private dataService: DataService, private db: AngularFirestore) {
+  constructor(private router: Router, private _apiService: ApiService, private dataService: DataService, private db: AngularFirestore) {
   }
 
   /* Variables to get the subscribed data from the dataService */
@@ -72,7 +73,7 @@ export class ResultComponent implements OnInit {
     this.dataService.long.subscribe( long => this.newLongitude = long);
     this.dataService.url.subscribe(url => this.newUrl = url);
 
-    // Getting the shared data from EmailService
+    // Getting the shared data from Local Storage
     // This is the key to access FireStorage
     if (localStorage.getItem('email')){
       this.newEmail = localStorage.getItem('email');
@@ -184,6 +185,10 @@ export class ResultComponent implements OnInit {
     }
   }
 
+  moveToMap(): void{
+    this.router.navigate(['map']);
+  }
+
   /* Helper method that takes a string and returns the count.
   * Finds the total number of specified offense. */
   findCount(value: string): number {
@@ -222,6 +227,7 @@ export class ResultComponent implements OnInit {
     }
   }
 
+
   /* Method that adds Favorite house to the House Collection */
   addFavoritehouse(): void {
     this.house.Addr = this.newAddr;
@@ -241,6 +247,5 @@ export class ResultComponent implements OnInit {
       this.db.collection('User/' + id + '/House').doc(this.house.PropID).set(Object.assign({}, this.house));
       unsubscribe();
     });
-
   }
 }

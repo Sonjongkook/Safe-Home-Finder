@@ -15,22 +15,13 @@ export class AuthService {
     this.user = firebaseAuth.authState;
   }
 
-  // checkUser(status): void{
-  //   this.firebaseAuth.onAuthStateChanged((user) =>{
-  //     if(user){
-  //       status.next(true);
-  //     }else{
-  //       status.next(false);
-  //     }
-  //   });
-  // }
-
   // Sign up functionality
   signup(email: string, password: string): void {
     this.firebaseAuth
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
         window.alert('Success!' + value);
+        localStorage.setItem("email", email);
         this.router.navigate(['login']);
       })
       .catch(err => {
@@ -46,7 +37,8 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then(value => {
         window.alert('Nice, it worked!');
-        this.router.navigate(['home']);
+        localStorage.setItem("email", email);
+        this.router.navigate(['search']);
       })
       .catch(err => {
         window.alert('Something went wrong:' + err.message);
@@ -58,7 +50,7 @@ export class AuthService {
   logout(): void {
     // If logout make email initialize
     this.firebaseAuth.signOut();
-    this.router.navigate(['about'])
+    this.router.navigate(['about']);
   }
 
 

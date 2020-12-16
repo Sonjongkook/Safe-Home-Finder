@@ -13,7 +13,7 @@ export class ApiService {
   private Realtor_API = ''; ///////// REALTOR API KEY
 
   /* Socrata API URL specifically for KCMO. */
-  private Socrata_KCMO_URL = '';
+  private Socrata_KCMO_URL = 'https://data.kcmo.org/resource/vsgj-uufz.json';
 
   constructor(private http: HttpClient) {
   }
@@ -25,11 +25,11 @@ export class ApiService {
     + lat + '&lon=' + long + '&radius=5&limit=5');
   }
 
-  /* Method that takes CITY, and STATE.
+  /* Method that takes CITY, STATE, and TYPE
   * Returns the Realtor latest 10 listing. */
-  getHomes(city, state) {
-    return fetch('https://realtor.p.rapidapi.com/properties/v2/list-for-sale?city=' + city + '&limit=15&offset=0&state_code=' + state +
-    '&sort=newest&is_pending=false&is_new_plan=false', {
+  getHomes(city, state, type) {
+    return fetch('https://realtor.p.rapidapi.com/properties/v2/list-for-' + type + '?city=' + city +
+      '&limit=15&offset=0&state_code=' + state + '&sort=newest&is_pending=false&is_new_plan=false', {
       method: 'GET',
       headers: {
         'x-rapidapi-key': this.Realtor_API,

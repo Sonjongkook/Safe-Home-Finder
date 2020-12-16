@@ -13,7 +13,7 @@ const appRoutes: Routes = [
   { path: '', redirectTo: '/about', pathMatch: 'full' },
   { path: 'signup', component: SignupComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'home', component: HomeComponent},
+  { path: 'search', component: HomeComponent},
   { path: 'result', component: ResultComponent},
   { path: 'map', component: GoogleMapComponent},
   { path: 'profile', component: ProfileComponent},

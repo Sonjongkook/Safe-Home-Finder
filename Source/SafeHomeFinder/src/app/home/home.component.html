@@ -14,12 +14,18 @@
             <label for="city"> City:</label> <br>
             <label for="state"> State:</label>  <br>
             <label for="zipcode"> Zipcode:</label> <br>
+            <label for="housetype1"> LifeStyle:</label> <br>
+
           </div>
           <div class="col-sm-10">
-            <input #addressInput required id="address" type="text" name="address" id="inputSize"> <br>
-            <input #cityInput required id="city" type="text" name="city" > (e.g. Kansas City) <br>
-            <input #stateInput required id="state" type="text" name="state"> (e.g. MO) <br>
-            <input #zipcodeInput required id="zipcode" type="text" name="zipcode"> (e.g. 12345) <br>
+              <input #addressInput required id="address" type="text" name="address" id="inputSize"> <br>
+              <input #cityInput required="required" id="city" type="text" name="city" > (e.g. Kansas City) <br>
+              <input #stateInput required="required" id="state" type="text" name="state"> (e.g. MO) <br>
+              <input #zipcodeInput required id="zipcode" type="text" name="zipcode"> (e.g. 12345) <br>
+              <span>
+                <input #typeInput required="required" id="housetype1" type="radio" name="type" (change)="radioChanged($event)" value="sale">Purchase <br>
+                <input #typeInput  (change)="radioChanged($event)" #typeInput required="required" id="housetype" type="radio" value="rent" name="type">Rent <br>
+              </span>
           </div>
           <button routerLink="/map" (click)="getSearchResults()" class="btn btn primary col-lg-2 col-lg-offset-5" type="button">Search</button>
         </div>

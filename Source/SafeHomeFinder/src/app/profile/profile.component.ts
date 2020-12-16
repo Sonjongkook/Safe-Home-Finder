@@ -14,17 +14,16 @@ export class ProfileComponent implements OnInit {
 
   constructor(private db: AngularFirestore, private userService: UserService) {}
 
-  users: User[];
+  users: any[];
   houses: House[];
   private updateSubscription: Subscription;
 
   ngOnInit(): void {
-
     this.userService.getUser().subscribe(users => {
       this.users = users;
     });
 
-    this.updateSubscription = interval(3000).subscribe(
+    this.updateSubscription = interval(1000).subscribe(
       (val) => {
         this.userService.getHouse().subscribe(houses => {
           this.houses = houses;
