@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {UserService} from '../service/user.service';
 import {House} from '../model/house.model';
@@ -10,12 +10,11 @@ import {DOCUMENT} from '@angular/common'
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
-  document: Document
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private db: AngularFirestore, private router: Router, private userService: UserService) {}
+  constructor(@Inject (DOCUMENT) private document: Document, private db: AngularFirestore, private router: Router, private userService: UserService) {}
 
   users: any[];
   houses: House[];
@@ -34,9 +33,9 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  viewSite(favHouse): void {
-    this.document.location.href = favHouse.rdc_web_url;
-}
+  viewSite(favHouseUrl): void {
+    window.location.replace(favHouseUrl);
+  }
 
 
 }

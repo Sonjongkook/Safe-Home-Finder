@@ -165,14 +165,14 @@
 
       <div class="col-md-6">
         <ul *ngFor="let house of houses" class="collection">
+          <br>
           <h3>Favorite House</h3>
-          <button (click)="viewSite(house)" class="btn" type="button">View Results Page</button>
+          <button (click)="viewSite(house.Url)" class="btn" type="button">View Results Page</button>
           <li class="collection-item">Address: {{house.Addr}}</li>
           <li class="collection-item">City: {{house.City}}</li>
           <li class="collection-item">PropID: {{house.PropID}}</li>
           <li class="collection-item">Zipcode: {{house.Zipcode}}</li>
           <li class="collection-item">URL: {{house.Url}}</li>
-          <br>
         </ul>
       </div>
     </div>
