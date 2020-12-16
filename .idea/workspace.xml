@@ -21,14 +21,15 @@
   <component name="ChangeListManager">
     <list default="true" id="a8c77685-0239-40b3-87f9-eae6cbeca25e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/about/about.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/about/about.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/about/about.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/about/about.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/app.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/google-map/google-map.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/google-map/google-map.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/google-map/google-map.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/google-map/google-map.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/navbar/navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/navbar/navbar.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/profile/profile.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/result/result.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/result/result.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/result/result.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/result/result.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/result/result.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/result/result.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/service/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/service/api.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +39,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
+  </component>
   <component name="ProjectId" id="1jMHvR7JmGhWiRKDXOLmFkxr5Vp" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -46,7 +50,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Source/SafeHomeFinder" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Source/SafeHomeFinder/src/assets" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -56,6 +60,9 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Sandy\Documents\GitHub\Safe-Home-Finder\Source\SafeHomeFinder\src\assets" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Sandy\Documents\GitHub\Safe-Home-Finder\Source\SafeHomeFinder\src\assets" />
     </key>
@@ -88,6 +95,10 @@
       <workItem from="1607970503987" duration="19013000" />
       <workItem from="1607994395842" duration="12602000" />
       <workItem from="1608007140376" duration="636000" />
+      <workItem from="1608060140935" duration="9278000" />
+      <workItem from="1608072363138" duration="510000" />
+      <workItem from="1608072884931" duration="7000" />
+      <workItem from="1608077313104" duration="5051000" />
     </task>
     <servers />
   </component>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {map} from 'rxjs/operators';
 import {UserService} from '../service/user.service';
 import {House} from '../model/house.model';
 import {User} from '../model/user.model';
+import {interval, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -16,24 +16,19 @@ export class ProfileComponent implements OnInit {
 
   users: User[];
   houses: House[];
+  private updateSubscription: Subscription;
 
   ngOnInit(): void {
 
-
     this.userService.getUser().subscribe(users => {
-
       this.users = users;
-      // console.log(this.users);
     });
 
-
-    this.userService.getHouse().subscribe(houses => {
-      this.houses = houses;
-      // console.log(this.houses);
-
-    });
-
-
+    this.updateSubscription = interval(3000).subscribe(
+      (val) => {
+        this.userService.getHouse().subscribe(houses => {
+          this.houses = houses;
+        });
+      });
   }
-
 }

@@ -2,6 +2,10 @@ p {
   font: normal 16px Verdana, Arial, sans-serif;
 }
 
+li {
+  font: normal 16px Verdana, Arial, sans-serif;
+}
+
 .mainTable {
   color: white;
   height: 100%;
@@ -24,8 +28,21 @@ p {
   flex:100%;
 }
 
+.textBox2 {
+  padding: 5px 5px 5px 5px;
+  flex:100%;
+  background: white;
+  color:#343A40;
+  min-height: 730px;
+}
+
 #image {
   width: 35%;
   border: 1px solid black;
+  margin: 5px 5px 5px 5px;
+}
+
+img {
+  width: 40%;
   margin: 5px 5px 5px 5px;
 }

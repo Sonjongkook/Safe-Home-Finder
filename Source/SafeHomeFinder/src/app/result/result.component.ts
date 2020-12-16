@@ -5,8 +5,6 @@ import {Chart} from 'node_modules/chart.js';
 import {House} from '../model/house.model';
 import {AngularFirestore} from '@angular/fire/firestore';
 
-
-
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
@@ -16,6 +14,7 @@ export class ResultComponent implements OnInit {
 
   constructor(private _apiService: ApiService, private dataService: DataService, private db: AngularFirestore) {
   }
+
   /* Variables to get the subscribed data from the dataService */
   private newAddr: string;
   private newCity: string;
@@ -28,22 +27,27 @@ export class ResultComponent implements OnInit {
 
   /* For User database Query */
   private newEmail: string;
-  /* list for Great Schools*/
+
+  /* For Great Schools*/
   schools_list: any;
-  /* list for Realtor houses */
+
+  /* For Realtor houses */
   home_list = [];
   nearby_houses = [];
-  /* Variables for Socrata data*/
+
+  /* For Socrata data*/
   crime_chart = [];
   crime_count = [];
-  /* Variables for Socrata charts */
+
+  /* For Socrata charts */
   chart: [];
   colors = [];
 
-  // House object for CRUD
+  /* House object for CRUD */
   house: House = new House();
 
-  /* Function that refreshes results page with new data */
+  /* Method that takes SIMILAR HOUSE data
+  * Assigns new data to the data service component and calls the ngOnInIt */
   refresh(newVals: any): void {
     this.dataService.setPropID(newVals.property_id);
     this.dataService.setAddress(newVals.location.address.line);
@@ -54,15 +58,9 @@ export class ResultComponent implements OnInit {
     this.ngOnInit();
   }
 
+  /* Method that calls right when result component opens
+  * Calls on API requests to pull data for selected house  */
   ngOnInit(): void {
-
-    console.log('this is the property id: ' + this.newPropID);
-    console.log('this is the address: ' + this.newAddr);
-    console.log('this is the city: ' + this.newCity);
-    console.log('this is the state: ' + this.newState);
-    console.log('this is the zip code: ' + this.newZipcode);
-    console.log('this is the lattitude: ' + this.newLatitude);
-    console.log('this is the longitude: ' + this.newLongitude);
 
     // Getting the shared data from DataService
     this.dataService.propID.subscribe(propID => this.newPropID = propID);
@@ -74,18 +72,16 @@ export class ResultComponent implements OnInit {
     this.dataService.long.subscribe( long => this.newLongitude = long);
     this.dataService.url.subscribe(url => this.newUrl = url);
 
-    // Getting the shared data from EmailService and this is the key to access FireStorage
+    // Getting the shared data from EmailService
+    // This is the key to access FireStorage
     if (localStorage.getItem('email')){
       this.newEmail = localStorage.getItem('email');
     }
 
-    // this.newPropID = 'M7744104915';
-    // this.newZipcode = '';
-    // this.newLatitude = '';
-
+    // If property ID is not defined, do not run API requests.
+    // If so, pull REALTOR api data.
     if (this.newPropID !== undefined) {
-      /* Realtor API similar homes for sale
-      * Uses the home's property ID */
+      // Realtor similar homes
       this._apiService.getSimilarHomes(this.newPropID)
         .then(response => {
           return response.json().then((data) => {
@@ -101,8 +97,7 @@ export class ResultComponent implements OnInit {
           });
         });
 
-      /* Realtor API displays house that was clicked on
-      * Uses the home's property ID */
+      // Realtor home details
       this._apiService.getHomeDetail(this.newPropID)
         .then(response => {
           return response.json().then((data) => {
@@ -116,9 +111,9 @@ export class ResultComponent implements OnInit {
       console.log('Property ID is ' + this.newPropID);
     }
 
+    // If STATE, LAT, and LONG are not defined, do not run API requests.
+    // If so, pull GREAT SCHOOLS api data.
     if (this.newState !== undefined && this.newLatitude !== undefined && this.newLongitude !== undefined){
-      /* Great Schools API call
-      *  -- Will use the shared state, shared lat, and shared long */
       this._apiService.getSchools(this.newState, this.newLatitude, this.newLongitude)
         .subscribe(data => this.schools_list = data.schools.school);
     }
@@ -126,8 +121,8 @@ export class ResultComponent implements OnInit {
       console.log('State, Latitude, and Longitude is ' + this.newState + ' ' + this.newLatitude + ' ' + this.newLongitude);
     }
 
-    /* Socrata API call and Creation of Chart
-    * Uses the shared zipcode */
+    // If ZIP CODE is not defined, do not run API requests.
+    // If so, SOCRATA api data.
     if (this.newZipcode !== undefined) {
       this._apiService.getSocrataCrimes()
         .subscribe((responses: any) => {
@@ -135,7 +130,7 @@ export class ResultComponent implements OnInit {
             this.findByZipcode(responses[k].zip_code, responses[k].description, this.newZipcode);
           });
 
-          /* Sort the array and create another array for count of offenses */
+          // Sort the array and create another array for count of offenses.
           this.crime_chart.sort();
           this.createCount([...new Set(this.crime_chart)]);
           this.randomizeColors();
@@ -144,15 +139,15 @@ export class ResultComponent implements OnInit {
             console.log('The crime list is empty!!');
           } else {
 
-            /* Create the chart */
+            // Create the chart.
             this.chart = new Chart('canvas', {
               type: 'bar',
               data: {
-                labels: [...new Set(this.crime_chart)], // Pass in unique set as the label
+                labels: [...new Set(this.crime_chart)], // Pass in crime chart set (unique).
                 datasets: [
                   {
                     label: 'Number of Reported Crimes Committed (2020) ' + this.newZipcode,
-                    data: this.crime_count, // Insert the associated data
+                    data: this.crime_count, // Insert the crime count.
                     backgroundColor: this.colors,
                     borderColor: this.colors,
                     borderWidth: 1,
@@ -187,16 +182,17 @@ export class ResultComponent implements OnInit {
     } else {
       console.log('Zipcode is ' + this.newZipcode);
     }
-
   }
 
-  /* Helper function that finds the total number of specified offense */
+  /* Helper method that takes a string and returns the count.
+  * Finds the total number of specified offense. */
   findCount(value: string): number {
     length = this.crime_chart.filter(item => item === value).length;
     return length;
   }
 
-  /* Helper function that creates the crime_count array for total number of offenses */
+  /* Helper method that takes an array.
+  * Creates the crime_count array for total number of offenses. */
   createCount(value: any[]): void{
     let counter = 0;
     for (const valueItem of value){
@@ -205,7 +201,7 @@ export class ResultComponent implements OnInit {
     }
   }
 
-  /* Helper function that randomizes colors for bars */
+  /* Helper method that randomizes colors for bars. */
   randomizeColors(): void{
     const visibility = 1;
     const maxValue = 255;
@@ -219,14 +215,14 @@ export class ResultComponent implements OnInit {
     });
   }
 
-  /* Helper function that finds related crimes based on zipcode */
+  /* Helper method that finds related crimes based on zipcode */
   findByZipcode(responseZip: any, responseDesc: any, sharZip: any): void {
     if (responseZip === sharZip && responseDesc !== undefined){
       this.crime_chart.push(responseDesc);
     }
   }
 
-  /* Function that adds Favorite house to the House Collection */
+  /* Method that adds Favorite house to the House Collection */
   addFavoritehouse(): void {
     this.house.Addr = this.newAddr;
     this.house.City = this.newCity;

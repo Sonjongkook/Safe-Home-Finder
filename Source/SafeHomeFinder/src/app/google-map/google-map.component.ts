@@ -3,8 +3,6 @@ import {ApiService} from '../service/api.service';
 import {DataService} from '../service/data.service';
 import {Router} from '@angular/router';
 
-
-
 @Component({
   selector: 'app-google-map',
   templateUrl: './google-map.component.html',
@@ -14,26 +12,31 @@ export class GoogleMapComponent implements OnInit {
 
   constructor(private _apiService: ApiService, private dataService: DataService, private router: Router) {
   }
+
   /* Variables to get the subscribed data from the dataService */
   address: string;
   city: string;
   state: string;
   zipcode: string;
   propId: string;
+
   /* Containers to store data */
   map: any;
-  home_list= [];
+  home_list = [];
 
+  /* Method that calls right when google-map component opens
+  * Calls on API requests to pull data for selected house  */
   ngOnInit(): void {
-    /* Subscribing to the dataService component */
+
+    // Getting the shared data from DataService
     this.dataService.address.subscribe(address => this.address = address);
     this.dataService.city.subscribe(city => this.city = city);
     this.dataService.state.subscribe(state => this.state = state);
     this.dataService.zipcode.subscribe(zipcode => this.zipcode = zipcode);
     this.dataService.propID.subscribe(propID => this.propId = propID);
 
-    /* Realtor Rapid API call - Displays 10 of the newest listings */
-    this._apiService.getHomes(this.city, this.state).then(response =>{
+    /* Realtor pulls 10 of the newest home listings */
+    this._apiService.getHomes(this.city, this.state).then(response => {
       return response.json().then((data) => {
         this.home_list = data.properties;
         return this.home_list;
@@ -45,7 +48,8 @@ export class GoogleMapComponent implements OnInit {
     });
   }
 
-  /* Method that initializes Google Map */
+  /* Method that initializes Google Map
+  * Maps all Realtor data onto Google Maps  */
   initMap(homelist): void {
     let coords = new google.maps.LatLng(homelist[0].address.lat, homelist[0].address.lon);
     let mapOptions: google.maps.MapOptions = {
