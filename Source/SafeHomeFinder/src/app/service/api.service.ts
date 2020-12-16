@@ -7,10 +7,10 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class ApiService {
 
   /* Great Schools API Key */
-  private GreatSchoolsAPIKey = '5b9df1e1eca307c301676bc5a9e68333';  ///////// GREAT SCHOOLS API KEY
+  private GreatSchoolsAPIKey = '';  ///////// GREAT SCHOOLS API KEY
 
   /* Realtor API Key */
-  private Realtor_API = '90ef9ea20cmsh133dddc56df0deep178293jsnada2d7c2b39a'; ///////// REALTOR API KEY
+  private Realtor_API = ''; ///////// REALTOR API KEY
 
   /* Socrata API URL specifically for KCMO. */
   private Socrata_KCMO_URL = 'https://data.kcmo.org/resource/vsgj-uufz.json';

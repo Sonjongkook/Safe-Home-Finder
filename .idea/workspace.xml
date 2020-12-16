@@ -21,15 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a8c77685-0239-40b3-87f9-eae6cbeca25e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/about/about.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/about/about.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/about/about.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/about/about.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/app.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/google-map/google-map.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/google-map/google-map.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/google-map/google-map.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/google-map/google-map.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/navbar/navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/navbar/navbar.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/profile/profile.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/result/result.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/result/result.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/service/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/service/api.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +92,7 @@
       <workItem from="1608072363138" duration="510000" />
       <workItem from="1608072884931" duration="7000" />
       <workItem from="1608077313104" duration="5051000" />
+      <workItem from="1608152229585" duration="65000" />
     </task>
     <servers />
   </component>
