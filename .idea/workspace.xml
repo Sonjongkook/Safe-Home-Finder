@@ -21,8 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a8c77685-0239-40b3-87f9-eae6cbeca25e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/service/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/service/api.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/result/result.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SafeHomeFinder/src/app/result/result.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +92,8 @@
       <workItem from="1608072884931" duration="7000" />
       <workItem from="1608077313104" duration="5051000" />
       <workItem from="1608152229585" duration="65000" />
+      <workItem from="1608155038753" duration="1784000" />
+      <workItem from="1608157568851" duration="623000" />
     </task>
     <servers />
   </component>
