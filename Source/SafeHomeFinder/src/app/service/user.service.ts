@@ -20,7 +20,7 @@ export class UserService {
   }
 
   // this method takes an House object and
-  // add a new employee to Firestore database collection
+  // add a new User to Firestore database collection
   addUser(user: User) {
     // convert object of type Employee to JSON object
     // because Firestore understand JSON
@@ -32,26 +32,21 @@ export class UserService {
   // fetched from Firestore database collection
   getUser() {
     this.Email = localStorage.getItem("email")
-    return this.db.collection('User', ref => ref.where("email", "==", this.Email)).valueChanges();;
+    return this.db.collection('User', ref => ref.where("email", "==", this.Email)).valueChanges();
   }
   // this method returns list Houses
   // fetched from Firestore database collection
-  // Todo: Update this to make it synchronized
   getHouse(){
-    console.log(this.Email);
     this.db.collection('User', ref => ref.where("email", "==", this.Email)).snapshotChanges().subscribe((res:any) =>{
-      console.log(res[0].payload.doc);
       this.id = res[0].payload.doc.id;
       localStorage.setItem('id', this.id);
       return;
-    })
+    });
 
     this.houses =  this.db.collection('User/' + localStorage.getItem('id') + '/House').valueChanges();
-    console.log(this.houses.forEach(d => console.log(d)));
     return this.houses;
 
   }
-
 
   updateUser(user: User) {
     const userObject = {...user};

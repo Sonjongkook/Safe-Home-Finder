@@ -237,7 +237,6 @@ export class ResultComponent implements OnInit {
     this.house.Url = this.newUrl;
     let unsubscribe;
 
-    console.log(this.newEmail);
     // Query User data base with email
     const doc = this.db.collection('User', ref => ref.where('email', '==', this.newEmail));
     // Add House to the favoritelist

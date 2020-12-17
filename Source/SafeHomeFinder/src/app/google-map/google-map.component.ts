@@ -36,7 +36,6 @@ export class GoogleMapComponent implements OnInit {
     this.dataService.zipcode.subscribe(zipcode => this.zipcode = zipcode);
     this.dataService.propID.subscribe(propID => this.propId = propID);
     this.dataService.type.subscribe(Type => this.type = Type);
-    console.log(this.type);
 
     /* Realtor pulls 10 of the newest home listings */
     this.apiService.getHomes(this.city, this.state, this.type).then(response => {
